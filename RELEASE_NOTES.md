@@ -1,4 +1,4 @@
-# Version 0.1.0 release candidate
+# Version 0.1.0
 
 This combined release presents separately checkable exact computer-assisted
 nonexistence proofs for orders 16 and 20.
