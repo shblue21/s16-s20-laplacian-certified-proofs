@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "Please cite the archived release and its combined preprint."
+title: "Nonexistence of Simple Graphs with Laplacian Spectrum {0,1,...,n-1} for n=16 and 20: Exact Computer-Assisted Proofs"
+type: software
+authors:
+  - family-names: "Kim"
+    given-names: "Jihun"
+    affiliation: "Independent Researcher"
+version: "0.1.0"
+date-released: 2026-08-24
+abstract: >-
+  This release gives exact computer-assisted nonexistence proofs for simple
+  graphs with Laplacian spectrum {0,1,...,n-1} at orders 16 and 20. The
+  deposited materials include the two certificate archives, exact verifiers,
+  coverage records and replay logs. The results concern only these two orders
+  and have not undergone external peer review.
+keywords:
+  - spectral graph theory
+  - Laplacian spectrum
+  - computer-assisted proof
+  - exact computation
+  - Farkas certificate
+  - graph nonexistence
+preferred-citation:
+  type: article
+  title: "Nonexistence of Simple Graphs with Laplacian Spectrum {0,1,...,n-1} for n=16 and 20: Exact Computer-Assisted Proofs"
+  authors:
+    - family-names: "Kim"
+      given-names: "Jihun"
+      affiliation: "Independent Researcher"
+  year: 2026

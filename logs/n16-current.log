@@ -1,0 +1,22 @@
+{"base_sequences": 2077, "branch_nodes": 66, "class_cert_sha256": "51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd", "class_models": 42, "degree_cert_sha256": "950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9", "degree_certificate_counts": {"stage1_farkas": 1359, "stage2_farkas": 676, "survivor": 42}, "elapsed_seconds": 5.007285, "farkas_leaves": 108, "graphical_sequences": 2233, "max_depth": 10, "moment_sequences": 2249, "status": "VERIFIED_UNSAT", "tree_nodes": 174}
+{"base_sequences": 2077, "graphical_sequences_havel_hakimi": 2233, "moment_sequences_independent": 2249, "mutation_rejected": true, "random_graphs_tested": 200, "status": "SEMANTIC_AUDIT_PASSED", "structured_graphs_tested": 5, "survivors": 42}
+ENVIRONMENT.txt: OK
+README.md: OK
+REGENERATE.sh: OK
+REPORT.md: OK
+REPRODUCE.sh: OK
+certs/class_exhaustion.json.gz: OK
+certs/degree_reduction.json.gz: OK
+code/audit_semantics.py: OK
+code/exact_models.py: OK
+code/farkas_tools.py: OK
+code/generate_certificates.py: OK
+code/verify_certificates.py: OK
+data/survivors42_exact.json: OK
+logs/audit_semantics.log: OK
+logs/reproduce.log: OK
+logs/verify_certificates.log: OK
+logs/verify_certificates_optimized.log: OK
+requirements-generation.txt: OK
+===== ORDER 16 OPTIMIZED VERIFIER =====
+{"base_sequences": 2077, "branch_nodes": 66, "class_cert_sha256": "51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd", "class_models": 42, "degree_cert_sha256": "950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9", "degree_certificate_counts": {"stage1_farkas": 1359, "stage2_farkas": 676, "survivor": 42}, "elapsed_seconds": 5.017071, "farkas_leaves": 108, "graphical_sequences": 2233, "max_depth": 10, "moment_sequences": 2249, "status": "VERIFIED_UNSAT", "tree_nodes": 174}

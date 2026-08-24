@@ -1,0 +1,3168 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  english,
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\sloppy
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Nonexistence of Simple Graphs with Laplacian Spectrum
+\{0,1,\ldots,n-1\} for n=16 and 20: Exact Computer-Assisted Proofs},
+  pdfauthor={Jihun Kim (Independent Researcher)},
+  pdflang={en},
+  pdfsubject={Exact certificate-based computer-assisted proofs in
+spectral graph theory},
+  pdfkeywords={spectral graph theory, Laplacian
+spectrum, computer-assisted proof, Farkas certificate, exact
+computation},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Nonexistence of Simple Graphs with Laplacian Spectrum
+\(\{0,1,\ldots,n-1\}\) for \(n=16\) and \(20\): Exact Computer-Assisted
+Proofs}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Preprint, version 0.1.0}
+\author{Jihun Kim (Independent Researcher)}
+\date{24 August 2026}
+
+\begin{document}
+\maketitle
+
+\textbf{MSC 2020:} 05C50, 05C85, 15A18.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Abstract}\label{abstract}
+
+We establish the \(n=16\) and \(n=20\) cases of the \(S_{n,n}\)
+conjecture. There is no simple graph on \(16\) vertices with Laplacian
+spectrum \(\{0,1,\ldots,15\}\), and no simple graph on \(20\) vertices
+with Laplacian spectrum \(\{0,1,\ldots,19\}\). Both proofs combine exact
+enumeration of forced degree data with linear relaxations derived from
+spectral moments, graph and complement identities, and degree-class
+incidence constraints. The order-16 proof eliminates \(2{,}077\)
+candidate degree sequences with \(2{,}143\) exact rational Farkas leaves
+organized into degree-reduction certificates and 42 integer branch
+trees. The order-20 proof enumerates \(160{,}244\)
+degree-sequence/triangle-count pairs, reduces them to \(80{,}122\)
+complement representatives, and eliminates them with \(80{,}124\) exact
+integer Farkas certificates, including four exhaustive branch leaves.
+All certificate checks use integer or rational arithmetic, and both
+coverage ledgers have zero uncovered cases. These finite-order results
+do not settle the conjecture in general.
+
+\clearpage
+\setcounter{tocdepth}{2}
+\tableofcontents
+\clearpage
+
+\subsection{Introduction and relation to previous
+work}\label{introduction-and-relation-to-previous-work}
+
+For \(1\le i\le n\), Fallat, Kirkland, Molitierno and Neumann introduced
+
+\[
+S_{i,n}=\{0,1,\ldots,n\}\setminus\{i\}
+\]
+
+and asked which such sets occur as the Laplacian spectrum of a simple
+graph {[}1{]}. Their \(S_{n,n}\) conjecture states that
+
+\[
+S_{n,n}=\{0,1,\ldots,n-1\}
+\]
+
+is not Laplacian-realizable for any \(n\ge2\). Fallat et al.~established
+the conjecture for \(n\le11\), prime \(n\), and \(n\equiv2,3\pmod4\)
+{[}1{]}. Das, Lee and Cheon derived additional diameter restrictions on
+any realizing graph and its complement {[}2{]}. Goldberger and Neumann
+proved the conjecture for all sufficiently large orders {[}3{]}. Hameed,
+Khan and Tyaglov surveyed the remaining range and, among other
+structural results, excluded Cartesian-product realizations {[}4{]}.
+Johnston, Plosker and Varona subsequently established the unrestricted
+order-12 case and described \(n=16\) as the smallest open order in July
+2026 {[}5{]}.
+
+The present paper treats exactly two orders, \(16\) and \(20\). Within
+the finite cases and order classes covered by the cited results, they
+are the two smallest orders not covered: 17 and 19 are prime, while
+\(18\equiv2\pmod4\). The least order not covered by that cited
+collection after the present two theorems is 21. The proofs share a
+mathematical architecture but not a single certificate corpus. The
+order-16 computation uses rational Farkas certificates and complete
+integer branch trees for 42 final class models. The order-20 computation
+uses a complement quotient followed by three continuous relaxations and
+a final two-root integer split.
+
+A literature search completed on 24 August 2026 found no earlier public
+proof of either case.
+
+\subsection{1. Main results and proof
+architecture}\label{main-results-and-proof-architecture}
+
+Let \(G\) be a finite simple undirected graph, let \(A\) be its
+adjacency matrix, let \(D=\operatorname{diag}(d_v)\), and let \(L=D-A\)
+be its Laplacian.
+
+\subsubsection{Theorem 1 (order 16)}\label{theorem-1-order-16}
+
+There is no simple undirected graph \(G\) on \(16\) vertices such that
+
+\[
+\operatorname{spec}L(G)=\{0,1,2,\ldots,15\}.
+\]
+
+\subsubsection{Theorem 2 (order 20)}\label{theorem-2-order-20}
+
+There is no simple undirected graph \(G\) on \(20\) vertices such that
+
+\[
+\operatorname{spec}L(G)=\{0,1,2,\ldots,19\}.
+\]
+
+Each proof has four logical components:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  derive necessary spectral, degree and triangle conditions;
+\item
+  enumerate every discrete candidate satisfying those conditions;
+\item
+  map every hypothetical target graph to a feasible point of a sequence
+  of necessary linear or mixed-integer relaxations;
+\item
+  verify exact Farkas certificates, together with exhaustive integer
+  branch splits where required, that eliminate every candidate.
+\end{enumerate}
+
+Floating-point optimization was used only during discovery. The proofs
+rely on the analytic derivations, exact enumeration, certificate
+verification and coverage ledgers described below.
+
+Appendix A gives the complete enumeration and coverage ledgers.
+Appendices B and C give the variables, rows, bounds, serialization and
+certificate semantics used by the order-16 and order-20 verifiers.
+
+\subsection{2. Shared spectral and graph
+identities}\label{shared-spectral-and-graph-identities}
+
+Assume temporarily that \(G\) has \(n\) vertices and Laplacian spectrum
+\(\{0,1,\ldots,n-1\}\). The zero eigenvalue is simple, so \(G\) is
+connected. The first three spectral power sums give
+
+\[
+\sum_v d_v=\operatorname{tr}L=\frac{n(n-1)}2,
+\tag{2.1}
+\]
+
+\[
+\sum_v d_v^2
+=\operatorname{tr}L^2-\operatorname{tr}L
+=\frac{n(n-1)(n-2)}3,
+\tag{2.2}
+\]
+
+and
+
+\[
+\sum_v d_v^3-6t(G)
+=\operatorname{tr}L^3-3\sum_vd_v^2.
+\tag{2.3}
+\]
+
+Here we used
+
+\[
+(L^2)_{vv}=d_v^2+d_v,
+\qquad
+\operatorname{tr}L^3=\sum_vd_v^3+3\sum_vd_v^2-6t(G).
+\]
+
+The complement satisfies
+
+\[
+L(\overline G)=nI-J-L(G).
+\]
+
+On \(\mathbf1^\perp\), eigenvalue \(k\) is sent to \(n-k\). Hence the
+target spectrum is complement-invariant. Direct counting also gives
+
+\[
+t(G)+t(\overline G)
+=\binom n3-\frac12\sum_vd_v(n-1-d_v)
+=\frac{n(n-1)(n-5)}{12}.
+\tag{2.4}
+\]
+
+For a local degree bound, choose an orthonormal Laplacian eigenbasis
+\(u_k\) and put \(w_{v,k}=u_k(v)^2\). Connectedness gives
+\(w_{v,0}=1/n\), while
+
+\[
+\sum_kkw_{v,k}=d_v,
+\qquad
+\sum_kk^2w_{v,k}=d_v^2+d_v.
+\tag{2.5}
+\]
+
+For \(1\le k\le n-1\),
+
+\[
+k^2\le nk-(n-1)
+\]
+
+because \((k-1)(n-1-k)\ge0\). Substitution in (2.5) gives
+
+\[
+nd_v^2-n(n-1)d_v+(n-1)^2\le0.
+\tag{2.6}
+\]
+
+This proves the exact integer ranges used below:
+
+\[
+2\le d_v\le13\quad(n=16),
+\qquad
+2\le d_v\le17\quad(n=20).
+\tag{2.7}
+\]
+
+Finally, every triangle contributes at each of its three vertices, so
+
+\[
+3t(G)\le\sum_v\binom{d_v}{2}.
+\]
+
+Combining this bound for \(G\) and \(\overline G\) with (2.4) yields
+
+\[
+54\le t(G)\le166\quad(n=16),
+\qquad
+127\le t(G)\le348\quad(n=20).
+\tag{2.8}
+\]
+
+These bounds are consequences of the target spectrum, not imported
+pruning assumptions.
+
+\subsection{3. Common relaxation
+variables}\label{common-relaxation-variables}
+
+Let \(m_d\) be the multiplicity of degree \(d\). For an order-\(n\)
+candidate define the nonnegative real spectral weights
+
+\[
+Y_{d,k}=n\sum_{v:d_v=d}u_k(v)^2,
+\qquad 1\le k\le n-1.
+\tag{3.1}
+\]
+
+Every target graph satisfies
+
+\[
+\sum_kY_{d,k}=(n-1)m_d,
+\quad
+\sum_kkY_{d,k}=nm_dd,
+\quad
+\sum_kk^2Y_{d,k}=nm_d(d^2+d),
+\tag{3.2}
+\]
+
+and, for each \(k\),
+
+\[
+\sum_dY_{d,k}=n.
+\tag{3.3}
+\]
+
+For a vertex \(v\) of degree \(d\), put
+
+\[
+s_v=\sum_{u\sim v}d_u,
+\qquad
+q_v=\#\{\text{triangles containing }v\},
+\qquad
+h_v=s_v-2q_v.
+\]
+
+Direct multiplication gives
+
+\[
+(L^3)_{vv}=d^3+2d^2+h_v.
+\tag{3.4}
+\]
+
+If \(R_v=V\setminus(N(v)\cup\{v\})\), then
+
+\[
+h_v=d+e(N(v),R_v),
+\qquad d\le h_v\le d(n-d).
+\tag{3.5}
+\]
+
+For a degree class define
+
+\[
+S_d=\sum_{v:d_v=d}s_v,
+\qquad
+H_d=\sum_{v:d_v=d}h_v.
+\]
+
+Equations (3.1) and (3.4) imply
+
+\[
+\sum_kk^3Y_{d,k}=n\{m_d(d^3+2d^2)+H_d\}.
+\tag{3.6}
+\]
+
+Summing (3.5) over the degree-\(d\) class gives the two necessary
+Stage-2 inequalities
+
+\[
+m_dd\le H_d\le m_dd(n-d).
+\tag{3.7}
+\]
+
+In both serialized Stage-2 models, \(H_d\) is not a separate variable.
+It is the affine abbreviation
+
+\[
+H_d=\frac1n\sum_k k^3Y_{d,k}-m_d(d^3+2d^2)
+\]
+
+obtained from (3.6). The variables \(S_d\) are allowed to be real in the
+relaxation, even though the values supplied by an actual graph are
+integers. After eliminating \(H_d\), (3.7) and the bounds below are
+linear rows in \(Y,S\).
+
+The neighbor-degree order bounds, triangle capacities,
+complement-triangle identity and \(\sum_dS_d=\sum_vd_v^2\) complete the
+Stage-2 relaxation. If \(\ell_d,u_d\) are the sums of the \(d\) smallest
+and largest entries after removing one occurrence of \(d\), then
+
+\[
+m_d\ell_d\le S_d\le m_du_d,
+\tag{3.8}
+\]
+
+while
+
+\[
+H_d\le S_d\le H_d+2m_d\binom d2.
+\tag{3.9}
+\]
+
+Writing \(M=n(n-1)/4\) for the forced edge count, the local complement
+formula
+
+\[
+\overline q_v=\binom{n-1-d}{2}-M+s_v-q_v
+\tag{3.10}
+\]
+
+gives
+
+\[
+m_d\left(2M-2\binom{n-1-d}{2}\right)
+\le S_d+H_d\le2Mm_d.
+\tag{3.11}
+\]
+
+All these rows are necessary conditions. The models deliberately omit
+several nonlinear graph-realizability constraints; infeasibility of a
+relaxation is therefore sufficient for nonexistence, whereas feasibility
+is not evidence of a graph.
+
+\subsection{4. The order-16 certified
+exhaustion}\label{the-order-16-certified-exhaustion}
+
+\subsubsection{4.1 Forced data and exact
+enumeration}\label{forced-data-and-exact-enumeration}
+
+For \(n=16\), (2.1)--(2.3) specialize to
+
+\[
+\sum_vd_v=120,
+\qquad
+\sum_vd_v^2=1120,
+\qquad
+\sum_vd_v^3-6t=11040.
+\tag{4.1}
+\]
+
+The complement triangle total is \(220\), the degree range is
+\([2,13]\), and the triangle range is \([54,166]\). Exact
+nondecreasing-sequence enumeration has the following ledger.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Order-16 layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Eliminated
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Survivors
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+moment equations & -- & -- & \(2{,}249\) \\
+Erdős--Gallai graphicality & \(2{,}249\) & \(16\) & \(2{,}233\) \\
+integral triangle count and bounds & \(2{,}233\) & \(156\) &
+\(2{,}077\) \\
+Stage 1 spectral weights & \(2{,}077\) & \(1{,}359\) & \(718\) \\
+Stage 2 local third moments & \(718\) & \(676\) & \(42\) \\
+integer class branch trees & \(42\) & \(42\) & \(0\) \\
+\end{longtable}
+}
+
+A second implementation enumerates the moment solutions by degree
+multiplicities and checks graphicality by Havel-Hakimi instead of
+reusing the main combinations/Erdős--Gallai route. It reproduces
+\(2{,}249\), \(2{,}233\) and \(2{,}077\) exactly.
+
+The recurrence, pruning invariant, graphicality test, triangle filter,
+deterministic record order and exact ledger-partition obligations for
+this enumeration are specified in Appendix A.
+
+\subsubsection{4.2 Spectral and local-third-moment
+leaves}\label{spectral-and-local-third-moment-leaves}
+
+The Stage-1 system consists of (3.2)--(3.3) at \(n=16\). Exact rational
+Farkas certificates eliminate \(1{,}359\) candidates. Stage 2 appends
+the real variables \(S_d\), uses the aggregate bounds (3.7)--(3.9) and
+(3.11) with \(H_d\) eliminated by the affine expression obtained from
+(3.6), and adds
+
+\[
+\sum_dS_d=1120.
+\]
+
+Exact rational Farkas certificates eliminate another \(676\) candidates,
+leaving 42 sequences.
+
+\subsubsection{4.3 Integer degree-class
+model}\label{integer-degree-class-model}
+
+For a surviving degree multiset let \(D\) be its distinct degrees and
+put
+
+\[
+P_{a,b}=\begin{cases}
+\binom{m_a}{2},&a=b,\\
+m_am_b,&a<b.
+\end{cases}
+\]
+
+The model retains the real variables \(Y_{d,k}\) and adds integer graph
+counts:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E_{a,b}\), the number of graph edges with endpoint degree multiset
+  \(\{a,b\}\);
+\item
+  \(T_{a,b,c}\), the number of graph triangles with degree multiset
+  \(\{a,b,c\}\);
+\item
+  \(C_{a,b,c}\), the analogous complement-triangle count indexed by
+  original degrees.
+\end{itemize}
+
+Their bounds are the elementary pair and triple capacities. Stub
+equations, graph and complement triangle totals, classwise third-moment
+equations, edge-triangle incidence bounds and degree-class wedge bounds
+are imposed. For example,
+
+\[
+2E_{d,d}+\sum_{b\ne d}E_{\min(d,b),\max(d,b)}=m_dd,
+\tag{4.2}
+\]
+
+\[
+\sum T_{a,b,c}=t,
+\qquad
+\sum C_{a,b,c}=220-t,
+\tag{4.3}
+\]
+
+and, with \(\nu_d(a,b,c)\) the multiplicity of \(d\) in a triple,
+
+\[
+\sum_kk^3Y_{d,k}
+=16\left[m_d(d^3+2d^2)+S_d^G-2R_d^G\right],
+\tag{4.4}
+\]
+
+where
+
+\[
+S_d^G=2dE_{d,d}+\sum_{b\ne d}bE_{\min(d,b),\max(d,b)},
+\qquad
+R_d^G=\sum_{a\le b\le c}\nu_d(a,b,c)T_{a,b,c}.
+\]
+
+The complement uses \(P_{a,b}-E_{a,b}\), original degree \(d\) maps to
+\(15-d\), and spectral weights satisfy
+
+\[
+\overline Y_{15-d,k}=Y_{d,16-k}.
+\tag{4.5}
+\]
+
+Any graph with the prescribed spectrum determines a feasible mixed
+point: \(Y\) is generally real, whereas \(E,T,C\) are integer. The
+converse is not asserted. The complete triple set, capacities, graph and
+complement rows, wedge and incidence inequalities, variable order and
+branch-tree serialization are given in Appendix B; that appendix is the
+formal definition of the model whose certificates are checked here.
+
+\subsubsection{4.4 Exact branch-and-Farkas
+proof}\label{exact-branch-and-farkas-proof}
+
+At an order-16 branch-tree node, the model has rational rows
+
+\[
+Ax\le b,
+\qquad
+Cx=e.
+\]
+
+A leaf stores rational multipliers \(y,z\) satisfying
+
+\[
+y\ge0,
+\qquad
+y^{\mathsf T}A+z^{\mathsf T}C=0,
+\qquad
+y^{\mathsf T}b+z^{\mathsf T}e=-1.
+\tag{4.6}
+\]
+
+Any feasible \(x\) would yield \(0\le-1\), a contradiction. An internal
+node branches on an explicitly integer variable \(x_j\) using
+
+\[
+x_j\le a
+\qquad\text{or}\qquad
+x_j\ge a+1.
+\tag{4.7}
+\]
+
+The cases are disjoint and exhaustive for every integer value in the
+parent interval. The 42 trees contain 174 nodes, 66 branch nodes and 108
+exact Farkas leaves, with maximum depth 10. Together with the
+\(1{,}359+676\) earlier leaves, the order-16 proof verifies \(2{,}143\)
+exact Farkas certificates. No target candidate survives the certified
+computation. Lemma 3 below supplies the graph-to-model implication that
+completes the proof of Theorem 1.
+
+\subsubsection{Computational Proposition 1 (order-16 exact
+coverage)}\label{computational-proposition-1-order-16-exact-coverage}
+
+The order-16 ledger partitions all \(2{,}077\) candidates into
+\(1{,}359\) Stage-1 leaves, \(676\) Stage-2 leaves and \(42\) class
+roots. The branch forest replaces those roots by \(108\) certified
+leaves, so \(2{,}143\) rational Farkas certificates cover every
+candidate.
+
+\subsection{5. The order-20 certified
+exhaustion}\label{the-order-20-certified-exhaustion}
+
+\subsubsection{5.1 Forced data, enumeration and complement
+quotient}\label{forced-data-enumeration-and-complement-quotient}
+
+For \(n=20\), the shared identities specialize to
+
+\[
+\sum_vd_v=190,
+\qquad
+\sum_vd_v^2=2280,
+\qquad
+\sum_vd_v^3-6t=29260.
+\tag{5.1}
+\]
+
+The complement triangle total is \(475\), the degree range is
+\([2,17]\), and the triangle range is \([127,348]\). Exact enumeration
+gives
+
+\[
+209{,}932\longrightarrow200{,}108\longrightarrow160{,}244
+\tag{5.2}
+\]
+
+moment sequences, graphical sequences, and graphical
+degree-sequence/triangle-count pairs. The primary enumerator lists
+degree multiplicities and uses Erdős--Gallai. A
+position-by-position/Havel--Hakimi audit and a degree-alphabet
+meet-in-the-middle/Kleitman-Wang audit reproduce the same counts and
+complete uncompressed candidate bytes.
+
+The exact enumeration recurrences, pruning invariants, record
+serialization, complement-orbit checks and ledger partitions are
+specified in Appendix A.
+
+For a pair \((s,t)\), where \(s=(d_1,\ldots,d_{20})\) is nondecreasing,
+define
+
+\[
+\kappa(s,t)
+=\left(\operatorname{sort}(19-d_1,\ldots,19-d_{20}),475-t\right).
+\tag{5.3}
+\]
+
+The map is a fixed-point-free involution on the 160,244 candidates: a
+fixed point would require \(2t=475\). Retaining the lexicographically
+smaller member of each orbit leaves exactly \(80{,}122\)
+representatives. If a target graph realizes either member, it or its
+complement realizes the retained one.
+
+\subsubsection{5.2 Three necessary relaxation
+layers}\label{three-necessary-relaxation-layers}
+
+Stage 1 is (3.2)--(3.3) at \(n=20\). Stage 2 appends the real variables
+\(S_d\), uses the aggregate bounds (3.7)--(3.9) and (3.11) with \(H_d\)
+eliminated by the affine expression obtained from (3.6), and adds
+\(\sum_dS_d=2280\). Stage 3 uses the real spectral weights together with
+degree-pair and degree-triple variables \(E_{a,b},T_z,C_z\). For a
+nondecreasing triple \(z\) with degree multiplicities \(\nu_d(z)\), put
+
+\[
+P_z=\prod_d\binom{m_d}{\nu_d(z)}.
+\]
+
+Only triples with \(P_z>0\) are serialized. Define the pair multiplicity
+in a triple by
+
+\[
+\pi_{a,b}(z)=
+\begin{cases}
+\binom{\nu_a(z)}2,&a=b,\\
+\nu_a(z)\nu_b(z),&a<b.
+\end{cases}
+\tag{5.4a}
+\]
+
+The elementary capacities are
+
+\[
+0\le E_{a,b}\le P_{a,b},
+\qquad
+0\le T_z,C_z\le P_z.
+\tag{5.4}
+\]
+
+The model imposes stub equations, graph and complement triangle totals,
+graph and complement classwise \(L^3\) equations, pair-incidence bounds
+and wedge bounds. For a pair \((a,b)\), graph triangles incident with
+that pair satisfy
+
+\[
+\sum_z\pi_{a,b}(z)T_z
+\le(\min(a,b)-1)E_{a,b},
+\tag{5.5}
+\]
+
+while complement triangles satisfy
+
+\[
+\sum_z\pi_{a,b}(z)C_z
+\le(18-\max(a,b))(P_{a,b}-E_{a,b}).
+\tag{5.6}
+\]
+
+In the 343 ordinary Stage-3 leaves, \(E,T,C\) are allowed to be real.
+Thus each certificate proves infeasibility of a continuous relaxation
+containing every actual graph point. Integrality metadata is consulted
+only for the final branch variable described below.
+
+Appendix C states the full graph and complement classwise equations,
+stub and triangle-total rows, pair-incidence and wedge inequalities,
+standard-form conversion, deterministic row order and sparse-certificate
+serialization reconstructed by the verifier.
+
+\subsubsection{5.3 Exact standard-form
+certificates}\label{exact-standard-form-certificates}
+
+For each order-20 leaf, finite lower bounds are shifted away,
+inequalities and finite upper bounds receive nonnegative slack
+variables, and the verifier obtains
+
+\[
+Bw=h,
+\qquad
+w\ge0,
+\tag{5.7}
+\]
+
+with integer \(B,h\). A stored integer multiplier \(z\) is a
+contradiction if
+
+\[
+B^{\mathsf T}z\ge0,
+\qquad
+h^{\mathsf T}z<0.
+\tag{5.8}
+\]
+
+Indeed, a feasible \(w\) would imply
+
+\[
+h^{\mathsf T}z=w^{\mathsf T}B^{\mathsf T}z\ge0.
+\]
+
+The dedicated slack columns force the multipliers of inequality and
+upper-bound rows to be nonnegative. The verifier checks integer
+arithmetic, row signs, row order and every sparse multiplier exactly.
+
+\subsubsection{5.4 Coverage and final integer
+split}\label{coverage-and-final-integer-split}
+
+The exact order-20 coverage ledger is:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Order-20 layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Exact Farkas leaves
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Survivors
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+complement representatives & \(80{,}122\) & -- & \(80{,}122\) \\
+Stage 1 spectral weights & \(80{,}122\) & \(63{,}235\) & \(16{,}887\) \\
+Stage 2 local third moments & \(16{,}887\) & \(16{,}542\) & \(345\) \\
+Stage 3 class model & \(345\) & \(343\) & \(2\) roots \\
+integer split & \(2\) roots & \(4\) & \(0\) \\
+\end{longtable}
+}
+
+The two parent roots are
+
+\[
+s^{(0)}=(2,2,2,4,6,6,7,7,9,9,9,10,12,12,14,14,15,16,17,17),
+\qquad t^{(0)}=229,
+\tag{5.9}
+\]
+
+and
+
+\[
+s^{(1)}=(2,2,2,5,5,6,6,8,9,9,9,10,12,12,14,14,15,16,17,17),
+\qquad t^{(1)}=231.
+\tag{5.10}
+\]
+
+Both have exactly three degree-2 vertices. Variable \(E_{2,2}\) is an
+actual integer graph-edge count with parent interval \([0,3]\). The two
+children
+
+\[
+E_{2,2}\le0
+\qquad\text{and}\qquad
+E_{2,2}\ge1
+\tag{5.11}
+\]
+
+are disjoint and cover every possible integer value. All four child
+relaxations have exact Farkas certificates. Hence the number of exact
+order-20 leaves is
+
+\[
+63{,}235+16{,}542+343+4=80{,}124.
+\tag{5.12}
+\]
+
+Every source at each layer is the disjoint union of the certified leaves
+and the next survivor ledger. The verifier checks exact set difference,
+uniqueness, source order, shard hashes and zero uncovered cases.
+Therefore no retained candidate survives the certified computation.
+Lemma 4 below supplies the canonical complement and graph-to-model
+implications that complete the proof of Theorem 2.
+
+\subsubsection{Computational Proposition 2 (order-20 exact
+coverage)}\label{computational-proposition-2-order-20-exact-coverage}
+
+The order-20 ledgers partition all \(80{,}122\) complement
+representatives into \(63{,}235\) Stage-1 leaves, \(16{,}542\) Stage-2
+leaves, \(343\) Stage-3 leaves and two final roots. The four certified
+children of those roots complete the \(80{,}124\)-leaf exhaustion.
+
+\subsection{6. Order-specific graph-to-model soundness and theorem
+proofs}\label{order-specific-graph-to-model-soundness-and-theorem-proofs}
+
+The shared identities do not make the two finite computations identical.
+The order-16 proof branches through complete mixed-integer class trees,
+whereas the order-20 proof first selects one complement representative,
+uses continuous class relaxations, and consults integrality only for its
+final split. We therefore state the two mapping lemmas separately.
+
+\subsubsection{Lemma 3 (order-16 graph-to-model
+mapping)}\label{lemma-3-order-16-graph-to-model-mapping}
+
+Suppose that a simple graph \(G\) on \(16\) vertices has Laplacian
+spectrum \(\{0,1,\ldots,15\}\). Its sorted degree sequence and forced
+triangle count occur in the complete order-16 enumeration. Its
+projector-diagonal weights \(Y\) satisfy the Stage-1 equations, and the
+same weights together with the actual neighbor-degree sums \(S_d\)
+satisfy every Stage-2 row. If the candidate reaches one of the 42 class
+models, the same \(Y\) together with the actual integer degree-class
+counts \(E,T,C\) gives a feasible mixed point of that model. At each
+branch node, the actual integer count lies in exactly one child.
+
+\paragraph{Proof}\label{proof}
+
+Equations (2.1)--(2.8) and the order-16 specialization (4.1) put the
+sorted degree sequence and its forced integral triangle count in the
+initial list; the completeness and filtering statement is the order-16
+part of Appendix A. Equations (3.1)--(3.3) follow by summing squared
+eigenvector coordinates over each degree class. Equations (3.4)--(3.11),
+after the stated elimination of \(H_d\), follow from the diagonal of
+\(L^3\), actual neighbor sums, triangle capacities and complement
+counting. For a final model, take \(E,T,C\) to be the actual edge and
+graph/complement triangle counts by degree class. Every row in Appendix
+B is then a capacity bound, double-counting identity, local third-moment
+identity or incidence upper bound. Finally, every branch is on an
+integer graph count and uses adjacent bounds \(x_j\le a\) and
+\(x_j\ge a+1\), so the children are disjoint and exhaustive. Thus an
+actual target graph remains feasible until it reaches one certified
+leaf. \(\square\)
+
+\subsubsection{Proof of Theorem 1}\label{proof-of-theorem-1}
+
+Assume that a target graph of order 16 exists. Lemma 3 maps it to an
+enumerated candidate and preserves a feasible point through every
+applicable relaxation and integer branch. Computational Proposition 1
+says that the exact coverage ledger sends every such candidate to a
+verified Farkas leaf. The contradiction at that leaf rules out the
+feasible point. Hence no target graph exists. \(\square\)
+
+\subsubsection{Lemma 4 (order-20 canonical graph-to-model
+mapping)}\label{lemma-4-order-20-canonical-graph-to-model-mapping}
+
+Suppose that a simple graph \(G\) on \(20\) vertices has Laplacian
+spectrum \(\{0,1,\ldots,19\}\). Let \(G^{\ast}\) be \(G\) if the pair
+consisting of its sorted degree sequence and triangle count is the
+retained representative of its \(\kappa\)-orbit, and let
+\(G^{\ast}=\overline G\) otherwise. Then \(G^{\ast}\) realizes exactly
+one of the \(80{,}122\) retained representatives. Its projector-diagonal
+weights and actual neighbor-degree sums give feasible points of its
+Stage-1 and Stage-2 models. If it reaches Stage 3, its actual
+degree-class counts \(E,T,C\), viewed in the continuous relaxation, give
+a feasible point of the class model. If it is one of the final two
+roots, its integer \(E_{2,2}\) lies in exactly one of the two children
+in (5.11).
+
+\paragraph{Proof}\label{proof-1}
+
+The target spectrum is invariant under complementation, and (5.3) is a
+fixed-point-free involution of the complete \(160{,}244\)-candidate set.
+Consequently exactly one of \(G,\overline G\) realizes the retained
+member of its orbit; this is the complement-coverage statement
+formalized in Appendix A. Applying (3.1)--(3.11) to \(G^{\ast}\) proves
+the Stage-1 and Stage-2 claims exactly as above. At Stage 3 take
+\(E,T,C\) to be the actual graph and complement counts by original
+degree class. The complete rows in Appendix C are satisfied by the
+corresponding capacity, stub, triangle-total, graph/complement
+third-moment, incidence and wedge counts. Although these counts are
+integers for \(G^{\ast}\), the 343 ordinary class certificates discard
+their integrality and prove infeasibility of the larger continuous
+relaxation. For either final root, \(E_{2,2}\) is an integer in
+\([0,3]\), so it satisfies exactly one of \(E_{2,2}\le0\) and
+\(E_{2,2}\ge1\). Thus \(G^{\ast}\) remains feasible until it reaches one
+certified leaf. \(\square\)
+
+\subsubsection{Proof of Theorem 2}\label{proof-of-theorem-2}
+
+Assume that a target graph of order 20 exists and form \(G^{\ast}\) as
+in Lemma 4. Computational Proposition 2 and the exact set-partition
+ledger place its retained candidate in a Stage-1, Stage-2 or Stage-3
+Farkas leaf, or in one of the four certified children of the final two
+roots. Lemma 4 supplies a feasible point in that same leaf,
+contradicting its exact certificate. Hence no target graph exists.
+\(\square\)
+
+\subsection{7. Artifacts, hashes and
+reproduction}\label{artifacts-hashes-and-reproduction}
+
+The theorem claims depend on two frozen proof artifacts. The canonical
+self-contained reproduction command from the combined release root is
+
+\begin{verbatim}
+./verification/REPRODUCE_BOTH.sh
+\end{verbatim}
+
+It checks the top-level manifest, replays order 16, performs the
+hardened offline order-20 replay, and requires the reproduced order-20
+canonical JSON to match the frozen expected bytes.
+
+A successful run terminates with
+
+\begin{verbatim}
+COMBINED_REPRODUCTION_PASS orders=16,20
+\end{verbatim}
+
+\subsubsection{7.1 Order-16 artifact}\label{order-16-artifact}
+
+\begin{verbatim}
+snn16-certified-nonexistence-20260821.zip
+SHA-256: f7f127da4fd6227bd66eadfc22847da270caf2d29b8bedbc16aabee548c8c847
+\end{verbatim}
+
+From the extracted package root, run:
+
+\begin{verbatim}
+./REPRODUCE.sh
+\end{verbatim}
+
+The two primary certificate files have SHA-256 identities:
+
+\begin{verbatim}
+certs/degree_reduction.json.gz
+950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9
+
+certs/class_exhaustion.json.gz
+51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd
+\end{verbatim}
+
+Expected statuses are VERIFIED\_UNSAT and SEMANTIC\_AUDIT\_PASSED.
+
+\subsubsection{7.2 Order-20 artifact}\label{order-20-artifact}
+
+\begin{verbatim}
+S20_CERTIFIED_EXHAUSTION_RELEASE_20260821.tar.gz
+SHA-256: 1eeda59a36dc835ec0efd3dc741d985145054af0d72e77f59e84f9cb63461206
+\end{verbatim}
+
+To replay order 20 alone from the combined release root, run:
+
+\begin{verbatim}
+./verification/n20/REPRODUCE_INDEPENDENT.sh \
+  artifacts/S20_CERTIFIED_EXHAUSTION_RELEASE_20260821.tar.gz \
+  tmp/reproduced-n20-canonical.json
+\end{verbatim}
+
+The publication-revision canonical JSON has SHA-256:
+
+\begin{verbatim}
+ebc3d8065c3f0c2e869e940f2d50c572292c45646a5ee6ac658a3f805b1ccbac
+\end{verbatim}
+
+Expected statuses include:
+
+\begin{verbatim}
+VERIFIED_UNSAT
+INDEPENDENT_ENUMERATION_V2_PASS
+INDEPENDENTLY_VERIFIED_UNSAT
+GRAPH_IDENTITY_CYCLE_V2_PASS
+INDEPENDENT_REPRODUCTION_PASS
+\end{verbatim}
+
+The strings beginning with INDEPENDENT are retained machine labels for
+separately implemented internal checks. They do not claim external
+replication.
+
+\subsubsection{7.3 Trust boundary}\label{trust-boundary}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Component
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Trust role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+floating-point LP and generators & untrusted discovery only \\
+analytic identities and mapping lemma & trusted mathematics \\
+exact enumerators & trusted internal implementation \\
+exact certificate verifiers & trusted internal implementation \\
+coverage and branch audits & trusted internal implementation \\
+external or different-language checker & not yet available; not
+claimed \\
+\end{longtable}
+}
+
+The two theorem packages use different constants, candidate ledgers and
+final certificate structures. Passing one verifier is not treated as
+evidence for the other theorem.
+
+\subsection{8. Limitations and external
+validation}\label{limitations-and-external-validation}
+
+Theorems 1 and 2 concern only the two stated orders and do not settle
+the conjecture in general. External specialist review, independently
+written verifiers, clean-room reproduction on additional platforms and
+eventual proof-assistant formalization would provide further assurance
+and remain future work.
+
+\newpage
+
+\subsection{Appendix A: Exact enumeration and finite-coverage
+specification}\label{appendix-a-exact-enumeration-and-finite-coverage-specification}
+
+This appendix specifies the discrete enumeration and coverage
+obligations used in the order-16 and order-20 proofs. The counts and
+hashes below were checked against the frozen inputs identified in
+Section A.1. All arithmetic in the trusted enumeration and coverage
+checks is integer arithmetic.
+
+\subsubsection{A.1 Frozen inputs and derived
+parameters}\label{a.1-frozen-inputs-and-derived-parameters}
+
+The two proof archives are logically separate.
+
+\begin{verbatim}
+snn16-certified-nonexistence-20260821.zip
+SHA-256: f7f127da4fd6227bd66eadfc22847da270caf2d29b8bedbc16aabee548c8c847
+
+S20_CERTIFIED_EXHAUSTION_RELEASE_20260821.tar.gz
+SHA-256: 1eeda59a36dc835ec0efd3dc741d985145054af0d72e77f59e84f9cb63461206
+\end{verbatim}
+
+For a target graph of order \(n\), write its nondecreasing degree
+sequence as \(s=(d_1,\ldots,d_n)\). The analytic part of the proof gives
+the following enumeration parameters.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+Parameter & \(n=16\) & \(n=20\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+allowed degree interval & \(2,\ldots,13\) & \(2,\ldots,17\) \\
+sequence length & 16 & 20 \\
+forced degree sum & 120 & 190 \\
+forced square sum & 1120 & 2280 \\
+constant \(C_n\) in \(\sum_i d_i^3-6t=C_n\) & 11040 & 29260 \\
+allowed triangle interval & \(54,\ldots,166\) & \(127,\ldots,348\) \\
+\(t(G)+t(\overline G)\) & 220 & 475 \\
+\end{longtable}
+}
+
+Consequently, if the allowed degree alphabet is
+\(D_n=\{a,a+1,\ldots,b\}\), every admissible sorted sequence corresponds
+bijectively to a nonnegative integer multiplicity vector
+\((m_a,\ldots,m_b)\) satisfying
+
+\[
+\sum_{d=a}^{b}m_d=n,
+\qquad
+\sum_{d=a}^{b}d m_d=\sigma_1,
+\qquad
+\sum_{d=a}^{b}d^2m_d=\sigma_2.
+\tag{A.1}
+\]
+
+No graph-isomorphism reduction or heuristic symmetry breaking is used in
+this enumeration.
+
+\subsubsection{A.2 Complete multiplicity
+recursion}\label{a.2-complete-multiplicity-recursion}
+
+The following pseudocode is a mathematical specification of a complete
+multiplicity enumeration. The frozen order-20 verifier implements its
+memoized exact-completion version. The separately structured order-16
+audit implements the same multiplicity principle with endpoint pruning;
+the order-16 strict verifier instead traverses every sorted tuple
+directly.
+
+\begin{verbatim}
+ENUM(d, r, S, Q, multiplicities):
+    # d is the smallest still available degree.
+    # A completion must use r entries, with residual sum S
+    # and residual square sum Q, all drawn from {d,...,b}.
+
+    if r < 0 or S < 0 or Q < 0:
+        return
+
+    if d = b:
+        if S = r*b and Q = r*b^2:
+            set m_b = r
+            output the sorted sequence encoded by m_a,...,m_b
+        return
+
+    if S < r*d or S > r*b:
+        return
+    if Q < r*d^2 or Q > r*b^2:
+        return
+    if r > 0 and r*Q < S^2:
+        return
+    if r = 0:
+        output only if S = Q = 0
+        return
+
+    for c = 0,...,r:
+        set m_d = c
+        ENUM(d+1, r-c, S-c*d, Q-c*d^2, multiplicities)
+\end{verbatim}
+
+The initial call is
+
+\[
+\operatorname{ENUM}(a,n,\sigma_1,\sigma_2,()).
+\tag{A.2}
+\]
+
+The pruning invariant is the following: at a call
+\(\operatorname{ENUM}(d,r,S,Q)\), a completion, if one exists, consists
+of exactly \(r\) values in \([d,b]\), with sum \(S\) and square sum
+\(Q\). Therefore it necessarily satisfies
+
+\[
+rd\le S\le rb,
+\qquad
+rd^2\le Q\le rb^2,
+\qquad
+rQ\ge S^2.
+\tag{A.3}
+\]
+
+The last inequality is Cauchy--Schwarz. Hence every endpoint or
+Cauchy--Schwarz rejection is necessary and cannot discard a completion.
+At an unpruned node, the loop tries every possible value of \(m_d\).
+Induction on the number of remaining degree values proves that every
+solution of (A.1) is output exactly once. The order-20 verifier
+additionally memoizes the exact Boolean recurrence
+
+\[
+P(d,r,S,Q)
+=\bigvee_{c=0}^{r}P(d+1,r-c,S-cd,Q-cd^2),
+\tag{A.4}
+\]
+
+with the evident terminal condition. This can prune more nodes than
+(A.3), but it is an exact restatement of the same exhaustive case split.
+
+\subsubsection{A.3 Graphicality and forced triangle
+filtering}\label{a.3-graphicality-and-forced-triangle-filtering}
+
+Every sequence output by (A.2) is tested for simple-graph graphicality.
+The strict paths use the Erdős--Gallai inequalities. If
+\(e_1\ge\cdots\ge e_n\) is the sequence in decreasing order, the test is
+
+\[
+\sum_{i=1}^{k}e_i
+\le k(k-1)+\sum_{i=k+1}^{n}\min(e_i,k)
+\quad(1\le k\le n).
+\tag{A.5}
+\]
+
+Only graphical sequences are retained. For each such sequence, the
+triangle count required by the third spectral moment is computed, rather
+than searched, as
+
+\[
+t=\frac{\sum_i d_i^3-C_n}{6}.
+\tag{A.6}
+\]
+
+The numerator must be divisible by 6, and the resulting integer must lie
+in the interval in Section A.1. These are necessary conditions for a
+target graph. Thus the moment recursion, graphicality test, divisibility
+test and triangle-range test cannot remove the degree data of a target
+graph.
+
+\subsubsection{A.4 Order-16 enumeration and
+coverage}\label{a.4-order-16-enumeration-and-coverage}
+
+The order-16 strict verifier enumerates all
+
+\[
+d_1,\ldots,d_{16}\in\{2,\ldots,13\},
+\qquad d_1\le\cdots\le d_{16},
+\]
+
+by a direct combinations-with-repetition traversal. It then applies the
+two moment equalities, Erdős--Gallai, and (A.6). Its exact ledger is:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+Order-16 layer & Source & Certified leaves & Survivors \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+two degree moments & all sorted tuples & -- & 2,249 \\
+Erdős--Gallai & 2,249 & -- & 2,233 \\
+triangle integrality and range & 2,233 & -- & 2,077 \\
+Stage 1 spectral model & 2,077 & 1,359 & 718 \\
+Stage 2 local model & 718 & 676 & 42 \\
+integer class trees & 42 roots & 108 branch-tree leaves & 0 \\
+\end{longtable}
+}
+
+The file \texttt{certs/degree\_reduction.json.gz} has one record, in
+exact base-list order, for each of the 2,077 candidates. Each record has
+exactly one of the mutually exclusive kinds \texttt{stage1\_farkas},
+\texttt{stage2\_farkas}, or \texttt{survivor}. Writing \(B_{16}\) for
+the ordered base list, \(L_{16,1}\) and \(L_{16,2}\) for the two
+certified subsets, and \(R_{16}\) for the final survivors, the verifier
+checks
+
+\[
+B_{16}=L_{16,1}\mathbin{\dot\cup}L_{16,2}
+              \mathbin{\dot\cup}R_{16},
+\quad
+(|L_{16,1}|,|L_{16,2}|,|R_{16}|)=(1359,676,42).
+\tag{A.7}
+\]
+
+Equivalently, the Stage-1 survivor set has size \(676+42=718\), and is
+the disjoint union of the Stage-2 leaves and the 42 class roots. The
+class certificate contains exactly those 42 roots, in the same order.
+Its integer branch trees have 174 nodes: 66 branch nodes and 108 exact
+Farkas leaves, with maximum depth 10. At each branch, adjacent integer
+bounds \(x_j\le q\) and \(x_j\ge q+1\) are disjoint and exhaustive.
+
+The frozen order-16 certificate identities are:
+
+\begin{verbatim}
+certs/degree_reduction.json.gz
+SHA-256: 950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9
+
+certs/class_exhaustion.json.gz
+SHA-256: 51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd
+\end{verbatim}
+
+The semantic audit follows a structurally different route: it enumerates
+multiplicities by the residual recursion of Section A.2 and uses
+largest-degree Havel--Hakimi instead of the strict verifier's
+sorted-tuple traversal and Erdős--Gallai test. It reproduces 2,249,
+2,233 and 2,077, compares the complete ordered base list with all
+certificate records, and checks that the class items equal the 42
+survivors. This is a separately structured internal audit, not external
+replication.
+
+\subsubsection{A.5 Order-20 complement
+quotient}\label{a.5-order-20-complement-quotient}
+
+Before certificate elimination, the order-20 computation applies a
+complement quotient. For a candidate \((s,t)\), define
+
+\[
+\kappa(s,t)=
+\left(\operatorname{sort}(19-d_1,\ldots,19-d_{20}),475-t\right).
+\tag{A.8}
+\]
+
+This map preserves the complete candidate set. Indeed, complementing a
+simple graph realizing a graphical degree sequence gives a simple graph
+with degree sequence \(\operatorname{sort}(19-d_i)\). Substitution in
+the first two moment equations preserves \(\sum d_i=190\) and
+\(\sum d_i^2=2280\). Expanding \(\sum_i(19-d_i)^3\), and using those two
+moments, gives
+
+\[
+\sum_i(19-d_i)^3
+=20\cdot19^3-3\cdot19^2\cdot190+3\cdot19\cdot2280-\sum_i d_i^3
+=61370-\sum_i d_i^3.
+\]
+
+Therefore (A.6) gives
+
+\[
+\overline t
+=\frac{61370-\sum_i d_i^3-29260}{6}
+=475-\frac{\sum_i d_i^3-29260}{6}
+=475-t.
+\]
+
+The interval \([127,348]\) is invariant under \(t\mapsto475-t\).
+Therefore the complement mate passes the same moment, graphicality,
+divisibility and range predicates.
+
+Applying (A.8) twice returns the original sorted pair, so \(\kappa\) is
+an involution. It has no fixed point: a fixed pair would require
+\(t=475-t\), or \(2t=475\), which is impossible for integer \(t\). Hence
+all 160,244 candidates lie in two-element orbits. Retaining the
+lexicographically smaller member of every orbit leaves exactly 80,122
+representatives and loses no hypothetical target graph, because the
+graph or its complement realizes the retained member.
+
+\subsubsection{A.6 Order-20 enumeration, hashes and
+coverage}\label{a.6-order-20-enumeration-hashes-and-coverage}
+
+The order-20 strict route uses the exact memoized multiplicity
+recurrence (A.4), Erdős--Gallai, (A.6), and the complement quotient
+(A.8). Its ledger is:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+Order-20 layer & Source & Certified leaves & Survivors \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+two degree moments & multiplicity recursion & -- & 209,932 \\
+Erdős--Gallai & 209,932 & -- & 200,108 \\
+triangle integrality and range & 200,108 & -- & 160,244 \\
+complement quotient & 160,244 & symmetry pairing & 80,122 \\
+Stage 1 spectral model & 80,122 & 63,235 & 16,887 \\
+Stage 2 local model & 16,887 & 16,542 & 345 \\
+Stage 3 class model & 345 & 343 & 2 roots \\
+final integer split & 2 roots & 4 child leaves & 0 \\
+\end{longtable}
+}
+
+The following SHA-256 values hash the complete \textbf{uncompressed
+canonical ledger bytes} named immediately above them. They are not
+hashes of individual certificates.
+
+\begin{verbatim}
+moment_sequences.txt (209,932)
+c60854d47d7c6492577999103aba99f00e50d076f38c3f4d3ad486e25c557856
+
+graphical_sequences.txt (200,108)
+7b7cc252551d8e0afdf76e9b47df007ac292b192c3474031201f4026936ef731
+
+base_sequences.txt (160,244)
+8523a5c0c0bc1c4f2d6e76be0979f984954b393393e483f4047529b0d48245e2
+
+complement_representatives.txt / Stage-1 source (80,122)
+851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4
+
+Stage-1 survivors / Stage-2 source (16,887)
+a325883c2b1d7919f70ac82d2460733f1fe9b3e373f633b42a1b6ae512fc3ad4
+
+Stage-2 survivors / class source (345)
+dd39bed2528cea440158a0161451dc29dbbb2b36fde0f91ae6558ee7424d8798
+
+class survivors / final roots (2)
+b3b6352252492f17517e00f25307f8370daec1eb50786d598218c8f540859ecc
+\end{verbatim}
+
+For each certificate stage \(i\), let \(S_i\) be its ordered source
+ledger, \(R_i\) its ordered survivor ledger, and \(L_i\) the source
+indices carrying certificates. The verifier checks more than the counts:
+every certificate index is in range and globally strictly increasing,
+every survivor is unique, the survivor list is the source-induced order,
+and
+
+\[
+S_i=L_i\mathbin{\dot\cup}R_i,
+\qquad
+L_i=S_i\setminus R_i.
+\tag{A.9}
+\]
+
+It also compares the bytes of each next-stage source with the preceding
+survivor ledger:
+
+\[
+S_1=\text{complement representatives},
+\quad S_2=R_1,
+\quad S_3=R_2.
+\tag{A.10}
+\]
+
+The two Stage-3 survivors are byte-identical to the two roots in the
+final branch metadata. Each root is split on the actual integer graph
+count \(E_{2,2}\) into \(E_{2,2}\le0\) and \(E_{2,2}\ge1\). These
+children are disjoint and exhaustive, and all four child models have
+exact certificates. Thus the certificate-leaf total is
+
+\[
+63235+16542+343+4=80124,
+\]
+
+with zero uncovered candidates.
+
+\subsubsection{A.7 Structurally different internal audit
+paths}\label{a.7-structurally-different-internal-audit-paths}
+
+The agreement checks deliberately change both enumeration and
+graphicality algorithms.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Order
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Main exact path
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Structurally different internal path
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+16 & sorted tuples by combinations with repetition; Erdős--Gallai &
+degree-multiplicity residual recursion; largest-degree Havel--Hakimi \\
+20, bundled & degree-multiplicity exact-completion recursion;
+Erdős--Gallai & nondecreasing position-by-position feasibility dynamic
+program; largest-degree Havel--Hakimi \\
+20, second verifier & does not import or execute release code &
+degree-alphabet meet-in-the-middle hash join; smallest-degree
+Kleitman--Wang layoff \\
+\end{longtable}
+}
+
+The order-20 meet-in-the-middle audit splits the degree alphabet,
+indexes high-half multisets by \texttt{(length,\ sum,\ square\ sum)},
+joins complementary low-half keys, and reconstructs the complete
+canonical bytes. It therefore does not reuse the multiplicity recursion.
+Its smallest-degree Kleitman--Wang layoff also differs from both
+Erdős--Gallai and the bundled largest-degree Havel--Hakimi path.
+
+These checks reduce the risk of a shared algorithmic mistake, but they
+remain internal Python implementations using the same frozen
+mathematical specification and data. Section 7.3 states the
+corresponding trust boundary.
+
+\subsection{Appendix B: Complete computational specification for the
+order-16
+proof}\label{appendix-b-complete-computational-specification-for-the-order-16-proof}
+
+This appendix specifies the finite computation contained in the frozen
+order-16 archive \texttt{snn16-certified-nonexistence-20260821.zip}. The
+mathematical implication used throughout is
+
+\[
+\text{target graph}
+\Longrightarrow
+\text{feasible point of a necessary relaxation}.
+\]
+
+Consequently, exact infeasibility of a relaxation rules out the graph.
+The converse implication is never assumed.
+
+\subsubsection{B.1 Frozen identities and candidate
+enumeration}\label{b.1-frozen-identities-and-candidate-enumeration}
+
+Let \(G\) be a simple graph on 16 vertices with hypothetical Laplacian
+spectrum \(\{0,1,\ldots,15\}\). The spectral trace identities, the local
+degree bound, and the graph/complement triangle identity give
+
+\[
+\sum_v d_v=120,\qquad
+\sum_v d_v^2=1120,\qquad
+\sum_v d_v^3-6t=11040,
+\tag{B.1}
+\]
+
+\[
+2\le d_v\le13,\qquad
+54\le t\le166,\qquad
+t(G)+t(\overline G)=220.
+\tag{B.2}
+\]
+
+The strict verifier enumerates every nondecreasing tuple in the
+lexicographic order induced by the Python standard-library
+combinations-with-replacement iterator over degrees \(2,\ldots,13\),
+\(s=(d_1,\ldots,d_{16})\) satisfying the first two equations in (B.1).
+It then applies the Erdős--Gallai inequalities, and finally retains a
+tuple precisely when
+
+\[
+t=\frac{\sum_i d_i^3-11040}{6}
+\tag{B.3}
+\]
+
+is an integer in \([54,166]\). The exact ledger is
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Enumeration layer & Exact count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+moment tuples & \(2{,}249\) \\
+Erdős--Gallai graphical tuples & \(2{,}233\) \\
+graphical tuples with admissible integral \(t\) & \(2{,}077\) \\
+\end{longtable}
+}
+
+The certificate records occur in exactly this final enumeration order. A
+separate internal semantic audit enumerates the moment solutions by
+degree multiplicities and tests graphicality by Havel--Hakimi. It
+reproduces all three counts and the complete ordered list of 2,077 pairs
+\((s,t)\). This is an internal cross-check using a different enumeration
+organization, not an external replication.
+
+For the remainder fix one candidate \((s,t)\). Let
+
+\[
+m_d=|\{i:d_i=d\}|,\qquad
+D=\{d:m_d>0\},
+\tag{B.4}
+\]
+
+with \(D\) always traversed in increasing order.
+
+\subsubsection{B.2 Stage 1: spectral-weight
+relaxation}\label{b.2-stage-1-spectral-weight-relaxation}
+
+Choose an orthonormal Laplacian eigenbasis \(u_0,\ldots,u_{15}\), where
+\(u_k\) has eigenvalue \(k\), and define
+
+\[
+Y_{d,k}=16\sum_{v:d_v=d}u_k(v)^2,
+\qquad d\in D,\quad 1\le k\le15.
+\tag{B.5}
+\]
+
+The \(Y_{d,k}\) are nonnegative \textbf{real} variables. No integrality,
+orthostochasticity, or integral-eigenvector condition is imposed. Every
+target graph satisfies
+
+\[
+\sum_{k=1}^{15}Y_{d,k}=15m_d,
+\tag{B.6}
+\]
+
+\[
+\sum_{k=1}^{15}kY_{d,k}=16m_dd,
+\tag{B.7}
+\]
+
+\[
+\sum_{k=1}^{15}k^2Y_{d,k}=16m_d(d^2+d)
+\tag{B.8}
+\]
+
+for every \(d\in D\), and
+
+\[
+\sum_{d\in D}Y_{d,k}=16
+\tag{B.9}
+\]
+
+for every \(1\le k\le15\). Stage 1 consists exactly of (B.6)--(B.9) and
+\(Y_{d,k}\ge0\). Exact rational Farkas certificates eliminate 1,359 of
+the 2,077 candidates, leaving 718.
+
+\subsubsection{B.3 Stage 2: local-third-moment
+relaxation}\label{b.3-stage-2-local-third-moment-relaxation}
+
+Stage 2 retains all Stage-1 variables and equations and adds one
+nonnegative real variable \(S_d\) for each \(d\in D\). Semantically,
+
+\[
+S_d=\sum_{v:d_v=d}\sum_{u\sim v}d_u.
+\tag{B.10}
+\]
+
+For one occurrence of \(d\), delete that occurrence from \(s\). Let
+\(\ell_d\) and \(u_d\) be the sums of the \(d\) smallest and \(d\)
+largest entries of the remaining 15-tuple. Then
+
+\[
+m_d\ell_d\le S_d\le m_du_d.
+\tag{B.11}
+\]
+
+Put
+
+\[
+b_d=d^3+2d^2,\qquad
+K_d=\sum_{k=1}^{15}k^3Y_{d,k}.
+\tag{B.12}
+\]
+
+There is no separately serialized \(H_d\) variable. It is the derived
+real quantity
+
+\[
+H_d=\frac{K_d}{16}-m_db_d
+=\sum_{v:d_v=d}(s_v-2q_v).
+\tag{B.13}
+\]
+
+The exact Stage-2 inequalities are
+
+\[
+m_dd\le H_d\le m_dd(16-d),
+\tag{B.14}
+\]
+
+\[
+H_d\le S_d\le H_d+2m_d\binom d2,
+\tag{B.15}
+\]
+
+and, from the local complement-triangle identity,
+
+\[
+m_d\left(120-2\binom{15-d}{2}\right)
+\le S_d+H_d\le120m_d.
+\tag{B.16}
+\]
+
+The final Stage-2 equality is
+
+\[
+\sum_{d\in D}S_d=1120.
+\tag{B.17}
+\]
+
+For avoidance of sign or scaling ambiguity, the verifier serializes the
+six base inequality rows for each increasing \(d\) in this order:
+
+\[
+-K_d\le-16m_d(b_d+d),
+\tag{B.18}
+\]
+
+\[
+K_d\le16m_d\{b_d+d(16-d)\},
+\tag{B.19}
+\]
+
+\[
+K_d-16S_d\le16m_db_d,
+\tag{B.20}
+\]
+
+\[
+-K_d+16S_d\le32m_d\binom d2-16m_db_d,
+\tag{B.21}
+\]
+
+\[
+-K_d-16S_d
+\le-16m_d\left\{b_d+120-2\binom{15-d}{2}\right\},
+\tag{B.22}
+\]
+
+\[
+K_d+16S_d\le16m_d(b_d+120).
+\tag{B.23}
+\]
+
+Variable-bound rows are appended later as specified in Section B.7.
+Exact rational Farkas certificates eliminate 676 of the 718 Stage-1
+survivors. The remaining 42 candidates are the ordered records in
+data/survivors42\_exact.json.
+
+\subsubsection{B.4 Final degree-class
+model}\label{b.4-final-degree-class-model}
+
+For \(a,b\in D\), \(a\le b\), define the available unordered vertex-pair
+capacity
+
+\[
+P_{a,b}=
+\begin{cases}
+\binom{m_a}{2},&a=b,\\
+m_am_b,&a<b.
+\end{cases}
+\tag{B.24}
+\]
+
+For a nondecreasing degree triple \(z=(a,b,c)\), let \(\mu_d(z)\) be the
+multiplicity of \(d\) in \(z\) and define
+
+\[
+P_z=\prod_{d\in D}\binom{m_d}{\mu_d(z)}.
+\tag{B.25}
+\]
+
+Only triples with \(P_z>0\) are included. The model contains:
+
+\begin{itemize}
+\tightlist
+\item
+  the nonnegative real variables \(Y_{d,k}\) from Stage 1;
+\item
+  \(E_{a,b}\), semantically the integer number of graph edges joining
+  degree classes \(a,b\);
+\item
+  \(T_z\), semantically the integer number of graph triangles with
+  original degree multiset \(z\);
+\item
+  \(C_z\), semantically the integer number of complement triangles whose
+  vertices have original graph-degree multiset \(z\).
+\end{itemize}
+
+Thus \(Y\) is real, whereas actual graph values of \(E,T,C\) are
+integers. The model declares every \(E,T,C\) variable integer and
+imposes
+
+\[
+0\le E_{a,b}\le P_{a,b},\qquad
+0\le T_z\le P_z,\qquad
+0\le C_z\le P_z.
+\tag{B.26}
+\]
+
+\paragraph{B.4.1 Stub and total-triangle
+equations}\label{b.4.1-stub-and-total-triangle-equations}
+
+For every \(d\in D\),
+
+\[
+2E_{d,d}+\sum_{b\in D\setminus\{d\}}
+E_{\min(d,b),\max(d,b)}=m_dd.
+\tag{B.27}
+\]
+
+The graph and complement totals are
+
+\[
+\sum_zT_z=t,\qquad
+\sum_zC_z=220-t.
+\tag{B.28}
+\]
+
+\paragraph{B.4.2 Graph classwise third
+moments}\label{b.4.2-graph-classwise-third-moments}
+
+Define
+
+\[
+S_d^G=2dE_{d,d}
++\sum_{b\in D\setminus\{d\}}
+bE_{\min(d,b),\max(d,b)},
+\tag{B.29}
+\]
+
+\[
+R_d^G=\sum_z\mu_d(z)T_z.
+\tag{B.30}
+\]
+
+For each \(d\in D\), the graph classwise \(L^3\) equation is
+
+\[
+\sum_{k=1}^{15}k^3Y_{d,k}
+=16\left\{m_d(d^3+2d^2)+S_d^G-2R_d^G\right\}.
+\tag{B.31}
+\]
+
+\paragraph{B.4.3 Complement classwise third
+moments}\label{b.4.3-complement-classwise-third-moments}
+
+An original degree-\(d\) vertex has complement degree \(15-d\), and
+
+\[
+\overline Y_{15-d,k}=Y_{d,16-k}.
+\tag{B.32}
+\]
+
+There are \(P_{a,b}-E_{a,b}\) complement edges between original degree
+classes \(a,b\). Therefore define
+
+\[
+S_d^{\overline G}
+=2(15-d)(P_{d,d}-E_{d,d})
++\sum_{b\in D\setminus\{d\}}
+(15-b)\left(
+P_{\min(d,b),\max(d,b)}
+-E_{\min(d,b),\max(d,b)}
+\right),
+\tag{B.33}
+\]
+
+\[
+R_d^{\overline G}=\sum_z\mu_d(z)C_z.
+\tag{B.34}
+\]
+
+The complement classwise \(L^3\) equation is
+
+\[
+\sum_{k=1}^{15}k^3Y_{d,16-k}
+=16\left\{
+m_d\bigl((15-d)^3+2(15-d)^2\bigr)
++S_d^{\overline G}-2R_d^{\overline G}
+\right\}.
+\tag{B.35}
+\]
+
+\paragraph{B.4.4 Pair-incidence
+inequalities}\label{b.4.4-pair-incidence-inequalities}
+
+For \(a\le b\), set
+
+\[
+\kappa_{a,b}(z)=
+\begin{cases}
+\binom{\mu_a(z)}2,&a=b,\\
+\mu_a(z)\mu_b(z),&a<b.
+\end{cases}
+\tag{B.36}
+\]
+
+This is the number of degree-\((a,b)\) vertex pairs in a triple of type
+\(z\). Every graph edge of endpoint degrees \(a,b\) lies in at most
+\(\min(a,b)-1\) graph triangles. Every complement edge between the same
+original classes has complement endpoint degrees \(15-a,15-b\), and
+hence lies in at most \(14-\max(a,b)\) complement triangles. The exact
+inequalities are
+
+\[
+\sum_z\kappa_{a,b}(z)T_z
+\le(\min(a,b)-1)E_{a,b},
+\tag{B.37}
+\]
+
+\[
+\sum_z\kappa_{a,b}(z)C_z
+\le(14-\max(a,b))(P_{a,b}-E_{a,b}).
+\tag{B.38}
+\]
+
+\paragraph{B.4.5 Degree-class wedge
+inequalities}\label{b.4.5-degree-class-wedge-inequalities}
+
+Counting triangle incidences at vertices in one degree class gives
+
+\[
+\sum_z\mu_d(z)T_z\le m_d\binom d2,
+\tag{B.39}
+\]
+
+\[
+\sum_z\mu_d(z)C_z\le m_d\binom{15-d}{2}.
+\tag{B.40}
+\]
+
+Equations (B.6)--(B.9), (B.27)--(B.28), (B.31), and (B.35), together
+with (B.26) and (B.37)--(B.40), are the complete final class model. No
+graph isomorphism quotient or symmetry-breaking constraint is present.
+
+\subsubsection{B.5 Why every target graph maps into the
+models}\label{b.5-why-every-target-graph-maps-into-the-models}
+
+For a target graph, (B.5) supplies nonnegative real \(Y\) and the
+spectral projector identities give (B.6)--(B.9). Actual neighbor-degree
+sums supply \(S_d\); the diagonal identity
+
+\[
+(L^3)_{vv}=d_v^3+2d_v^2+s_v-2q_v
+\tag{B.41}
+\]
+
+and \(s_v-2q_v=d_v+e(N(v),R_v)\) give (B.13)--(B.15). The local
+complement-triangle identity gives (B.16). Actual degree-class edge and
+triangle counts supply integer \(E,T,C\). Their pair and triple
+capacities, stub counts, triangle totals, classwise third moments,
+edge-triangle incidences, and wedge counts give every row in Section
+B.4. Complement equations follow from
+
+\[
+L(\overline G)=16I-J-L(G).
+\tag{B.42}
+\]
+
+Thus every target graph gives a feasible mixed point. The relaxations
+may also contain points that do not come from graphs; that enlargement
+is harmless for an infeasibility proof.
+
+\subsubsection{B.6 Integer branching and leaf
+semantics}\label{b.6-integer-branching-and-leaf-semantics}
+
+At the root of each of the 42 final models, \(Y\) is real and \(E,T,C\)
+have the integer semantics and bounds in (B.26). A branch node stores a
+variable index \(j\) belonging to the declared integer-variable set and
+an integer \(a\). Its children impose
+
+\[
+x_j\le a
+\qquad\text{and}\qquad
+x_j\ge a+1.
+\tag{B.43}
+\]
+
+These children are disjoint and cover every integer value allowed at the
+parent. The verifier propagates current lower and upper bounds
+recursively and, for current bounds \(\ell_j,u_j\), requires
+\(\ell_j\le a<u_j\).
+
+In the frozen forest all 66 branch nodes happen to branch on
+\(E\)-variables. This does not assume that \(T\) or \(C\) is continuous
+in an actual graph. At a leaf the stored Farkas certificate proves
+infeasibility of the \textbf{continuous} linear relaxation under the
+accumulated branch bounds. Hence it also excludes the smaller set in
+which all \(E,T,C\) are integral; no further branch is needed.
+
+The 42 rooted trees contain
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Quantity & Exact value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+roots / final class models & \(42\) \\
+all tree nodes & \(174\) \\
+branch nodes & \(66\) \\
+Farkas leaves & \(108\) \\
+maximum depth & \(10\) \\
+\end{longtable}
+}
+
+The full-binary-forest identity \(108=66+42\) is an additional
+elementary check on the tree ledger.
+
+\subsubsection{B.7 Farkas certificates and deterministic
+serialization}\label{b.7-farkas-certificates-and-deterministic-serialization}
+
+Every model is represented as
+
+\[
+Ax\le b,\qquad Cx=e.
+\tag{B.44}
+\]
+
+Finite lower bounds are appended as rows \(-x_j\le-\ell_j\); finite
+upper bounds are appended as \(x_j\le u_j\). A certificate consists of
+rational multipliers \(y,z\) such that
+
+\[
+y\ge0,\qquad
+y^{\mathsf T}A+z^{\mathsf T}C=0,\qquad
+y^{\mathsf T}b+z^{\mathsf T}e<0.
+\tag{B.45}
+\]
+
+The frozen 2,143 certificates are normalized so that the last quantity
+is exactly \(-1\). The verifier checks cancellation and negativity over
+fractions.Fraction, without a floating tolerance. Equation (B.45)
+contradicts feasibility because a feasible \(x\) would give \(0\le-1\).
+
+The deterministic variable order is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(Y_{d,k}\), with \(d\) increasing and then \(k=1,\ldots,15\);
+\item
+  in Stage 2 only, \(S_d\) with \(d\) increasing;
+\item
+  in a class model, \(E_{a,b}\) for lexicographically ordered pairs
+  \(a\le b\);
+\item
+  \(T_z\) for lexicographically ordered nondecreasing triples with
+  \(P_z>0\);
+\item
+  \(C_z\) in the same triple order.
+\end{enumerate}
+
+The deterministic equality-row order is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  for each increasing \(d\), the three rows (B.6)--(B.8);
+\item
+  for \(k=1,\ldots,15\), row (B.9);
+\item
+  in Stage 2, the single final row (B.17);
+\item
+  in a class model instead: stub rows (B.27) by increasing \(d\), the
+  graph and complement totals (B.28), graph \(L^3\) rows (B.31) by
+  increasing \(d\), and complement \(L^3\) rows (B.35) by increasing
+  original \(d\).
+\end{enumerate}
+
+The deterministic base-inequality order is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  in Stage 2, rows (B.18)--(B.23) for each increasing \(d\);
+\item
+  in a class model, for each lexicographic pair \(a\le b\), graph row
+  (B.37) followed by complement row (B.38);
+\item
+  for each increasing \(d\), graph row (B.39) followed by complement row
+  (B.40).
+\end{enumerate}
+
+After those base inequalities, every finite lower bound is appended in
+variable index order, followed by every finite upper bound in variable
+index order. This order determines the row indices referenced by a
+Farkas certificate.
+
+\paragraph{B.7.1 Degree-reduction
+JSON}\label{b.7.1-degree-reduction-json}
+
+certs/degree\_reduction.json.gz has top-level format
+snn16-degree-reduction-v1 and fields
+
+\begin{verbatim}
+base_count, counts, format, records
+\end{verbatim}
+
+There are exactly 2,077 ordered records. Each record contains sequence,
+triangles, and one of the kinds stage1\_farkas, stage2\_farkas, or
+survivor. The first two kinds additionally contain cert; a survivor
+contains no certificate. The exact kind counts are
+
+\begin{verbatim}
+stage1_farkas  1359
+stage2_farkas   676
+survivor         42
+\end{verbatim}
+
+\paragraph{B.7.2 Certificate JSON}\label{b.7.2-certificate-json}
+
+A certificate is an object with arrays y and z. A nonzero rational
+multiplier is encoded as
+
+\begin{verbatim}
+[row_index, numerator, denominator]
+\end{verbatim}
+
+with nonzero denominator. Omitted row indices mean multiplier zero. The
+y array indexes the complete inequality list, including bounds, and must
+be nonnegative. The z array indexes the equality list and is
+unrestricted in sign. Duplicate or out-of-range indices are rejected by
+the strict verifier.
+
+\paragraph{B.7.3 Class-exhaustion
+JSON}\label{b.7.3-class-exhaustion-json}
+
+certs/class\_exhaustion.json.gz has top-level format
+snn16-class-exhaustion-v1, count 42, and an ordered items array. Every
+item records its index, sequence, triangle count, statistics and root
+tree. A tree node has one of the forms
+
+\begin{verbatim}
+{"type":"leaf","cert":{"y":[],"z":[]}}
+\end{verbatim}
+
+or
+
+\begin{verbatim}
+{
+  "type":"branch",
+  "var":143,
+  "floor":4,
+  "left":{},
+  "right":{}
+}
+\end{verbatim}
+
+Both displays are schema illustrations: actual leaf multiplier arrays
+are populated, and the empty child objects are placeholders for
+recursively encoded nodes. The verifier reconstructs the model from the
+sequence and triangle count; no matrix stored in the certificate is
+trusted.
+
+\subsubsection{B.8 Exact coverage and frozen
+identities}\label{b.8-exact-coverage-and-frozen-identities}
+
+The degree-reduction records and class forest give the disjoint coverage
+ledger
+
+\[
+2077=1359+676+42,
+\tag{B.46}
+\]
+
+\[
+2143=1359+676+108.
+\tag{B.47}
+\]
+
+The strict verifier matches every degree record to the freshly
+enumerated \((s,t)\) at the same position, matches the 42 class items to
+exactly the 42 survivors, checks every branch recursively, and verifies
+all 2,143 rational contradictions. The semantic audit independently
+reorganizes the finite degree-sequence enumeration, checks the survivor
+and complement ledgers, tests selected non-spectral graph-to-model
+identities on structured and deterministic random graphs, and confirms
+that a one-unit certificate mutation is rejected.
+
+The frozen artifact identities are:
+
+\begin{verbatim}
+snn16-certified-nonexistence-20260821.zip
+f7f127da4fd6227bd66eadfc22847da270caf2d29b8bedbc16aabee548c8c847
+
+certs/degree_reduction.json.gz
+950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9
+
+certs/class_exhaustion.json.gz
+51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd
+
+data/survivors42_exact.json
+ca899c72bf4e17c18663ee5b0d58a044347dcaad078c1a37f02bf551c1a09fa7
+
+code/verify_certificates.py
+7fdc4932f8f6a50b7bef06db8537c3eb621ae5cea9ad6910c53ea455a0458d61
+
+code/audit_semantics.py
+a6908f2f844c35cc806e356cef121ff2984662c022905276a6b910d7dcaf026c
+\end{verbatim}
+
+A clean replay from the extracted ZIP is
+
+\begin{verbatim}
+./REPRODUCE.sh
+\end{verbatim}
+
+and has expected terminal statuses VERIFIED\_UNSAT and
+SEMANTIC\_AUDIT\_PASSED. The strict verifier uses Python
+standard-library arithmetic only. The archive records successful normal
+and optimized Python verification; certificate regeneration is not part
+of the trusted replay.
+
+The combined release additionally stores a current normal/optimized
+transcript:
+
+\begin{verbatim}
+logs/n16-current.log
+\end{verbatim}
+
+The combined replay normalizes away elapsed time, requires the two
+verifier records to agree exactly, and requires the resulting summary
+bytes to equal:
+
+\begin{verbatim}
+results/ORDER16_RESULT_FINAL.json
+\end{verbatim}
+
+\subsubsection{B.9 Generator/verifier lineage and limits of
+independence}\label{b.9-generatorverifier-lineage-and-limits-of-independence}
+
+The untrusted generator uses code/exact\_models.py, SciPy/HiGHS and
+SymPy. Floating-point optimization is used only to discover supports and
+branch choices; proposed multipliers are exactified before storage. None
+of the solver success or infeasibility flags is a premise of the
+theorem.
+
+The trusted strict verifier is a separately implemented
+\textbf{internal} Python program. It uses only the standard library,
+re-enumerates the candidate list, reconstructs every row from the
+mathematical definitions, and checks the stored rational multipliers and
+integer branches. It does not import the generator's exact\_models.py or
+farkas\_tools.py.
+
+The semantic audit supplies another enumeration organization,
+Havel--Hakimi graphicality, selected graph-identity tests, coverage
+comparisons and mutation rejection. Its mutation test loads the strict
+verifier. Both programs are internal Python implementations; Section 7.3
+states their trust boundary.
+
+The remaining trusted boundary consists of the analytic graph-to-model
+mapping in Section B.5, the correctness of the internal Python verifier
+and runtime, and integrity of the frozen hashes. Those limitations
+affect the validation status of the computer-assisted proof but do not
+turn floating-point discovery output into a trusted premise.
+
+\subsection{Appendix C: Complete order-20 model and certificate
+specification}\label{appendix-c-complete-order-20-model-and-certificate-specification}
+
+\subsubsection{C.1 Purpose, scope and frozen
+artifact}\label{c.1-purpose-scope-and-frozen-artifact}
+
+This appendix gives the complete mathematical and serialization
+specification for the order-\(20\) theorem in the combined manuscript.
+It makes the graph-to-model implication and the correspondence with the
+exact verifier auditable without treating generated matrices or
+floating-point solver output as trusted evidence.
+
+The theorem addressed here is
+
+\[
+\text{there is no simple graph }G\text{ on }20\text{ vertices with }
+\operatorname{spec}L(G)=\{0,1,\ldots,19\}.
+\]
+
+The frozen certificate artifact is
+
+\begin{verbatim}
+S20_CERTIFIED_EXHAUSTION_RELEASE_20260821.tar.gz
+SHA-256: 1eeda59a36dc835ec0efd3dc741d985145054af0d72e77f59e84f9cb63461206
+\end{verbatim}
+
+Throughout, \(G\) is a finite simple undirected graph, \(A\) is its
+adjacency matrix, \(D=\operatorname{diag}(d_v)\), and \(L=D-A\). Every
+model below contains necessary conditions only. A feasible relaxation
+point need not come from a graph; soundness requires the other
+direction: every hypothetical target graph supplies a feasible point.
+
+\subsubsection{C.2 Global necessities, enumeration and complement
+quotient}\label{c.2-global-necessities-enumeration-and-complement-quotient}
+
+The prescribed spectrum has a simple zero, so \(G\) is connected. Its
+first three Laplacian moments give
+
+\[
+\sum_vd_v=190,\qquad
+\sum_vd_v^2=2280,\qquad
+\sum_vd_v^3-6t(G)=29260.
+\tag{C.1}
+\]
+
+Thus \(|E(G)|=95\), and the only possible triangle count for a degree
+sequence is
+
+\[
+t(G)=\frac{\sum_vd_v^3-29260}{6}.
+\tag{C.2}
+\]
+
+For an orthonormal eigenbasis \(Lu_k=ku_k\), put \(w_{v,k}=u_k(v)^2\).
+Since \(w_{v,0}=1/20\),
+
+\[
+\sum_{k=1}^{19}kw_{v,k}=d_v,\qquad
+\sum_{k=1}^{19}k^2w_{v,k}=d_v^2+d_v,\qquad
+\sum_{k=1}^{19}w_{v,k}=\frac{19}{20}.
+\]
+
+The pointwise inequality \(k^2\le20k-19\), valid for \(1\le k\le19\),
+implies
+
+\[
+20d_v^2-380d_v+361\le0.
+\]
+
+Its integral solutions in the simple-graph range are exactly
+
+\[
+2\le d_v\le17.
+\tag{C.3}
+\]
+
+For an edge \(uv\), the number \(c_{uv}\) of common neighbors satisfies
+\(c_{uv}\ge d_u+d_v-20\). Hence
+
+\[
+3t(G)=\sum_{uv\in E(G)}c_{uv}
+\ge\sum_{uv\in E(G)}(d_u+d_v-20)
+=2280-20(95)=380,
+\]
+
+so \(t(G)\ge127\). The identity
+
+\[
+L(\overline G)=20I-J-L(G)
+\]
+
+shows that the target spectrum is complement-invariant. Also,
+
+\[
+t(G)+t(\overline G)
+=\binom{20}{3}-\frac12\sum_vd_v(19-d_v)=475.
+\tag{C.4}
+\]
+
+Applying the same lower bound to \(\overline G\) yields
+
+\[
+127\le t(G)\le348.
+\tag{C.5}
+\]
+
+Exact enumeration lists every nondecreasing \(20\)-tuple in \([2,17]\)
+satisfying the degree moments, tests graphicality, and imposes the
+integrality and range in (C.2) and (C.5). The counts are
+
+\[
+209{,}932\longrightarrow200{,}108\longrightarrow160{,}244
+\tag{C.6}
+\]
+
+for moment sequences, graphical sequences, and graphical
+degree-sequence/triangle-count pairs.
+
+For \(s=(d_1,\ldots,d_{20})\) nondecreasing, define
+
+\[
+\kappa(s,t)=
+\left(\operatorname{sort}(19-d_1,\ldots,19-d_{20}),475-t\right).
+\tag{C.7}
+\]
+
+The verifier checks that \(\kappa\) is an involution on the complete
+\(160{,}244\)-candidate set. It has no fixed pair because a fixed pair
+would require the integer equation \(2t=475\). Retaining the
+lexicographically smaller member of each orbit gives \(80{,}122\)
+representatives. If a target graph realizes a discarded member, its
+complement realizes the retained mate.
+
+\subsubsection{C.3 Stage 1: degree-class spectral
+weights}\label{c.3-stage-1-degree-class-spectral-weights}
+
+Let \(m_d=|\{v:d_v=d\}|\), let \(D_s\) be the increasing set of degrees
+in a candidate \(s\), and define nonnegative real variables
+
+\[
+Y_{d,k}=20\sum_{v:d_v=d}u_k(v)^2,
+\qquad d\in D_s,\quad1\le k\le19.
+\tag{C.8}
+\]
+
+Every target graph satisfies, for each \(d\in D_s\),
+
+\[
+\sum_{k=1}^{19}Y_{d,k}=19m_d,
+\tag{C.9}
+\]
+
+\[
+\sum_{k=1}^{19}kY_{d,k}=20m_dd,
+\tag{C.10}
+\]
+
+\[
+\sum_{k=1}^{19}k^2Y_{d,k}=20m_d(d^2+d),
+\tag{C.11}
+\]
+
+and, for every \(1\le k\le19\),
+
+\[
+\sum_{d\in D_s}Y_{d,k}=20.
+\tag{C.12}
+\]
+
+Equations (C.9)--(C.12), together with \(Y_{d,k}\ge0\), are exactly the
+Stage-1 model. Orthostochasticity, eigenvector signs, and other
+nonlinear conditions are omitted, so this is a relaxation. Exact Farkas
+certificates eliminate \(63{,}235\) of the \(80{,}122\) representatives
+and leave \(16{,}887\).
+
+\subsubsection{C.4 Stage 2: local third moments and all serialized
+rows}\label{c.4-stage-2-local-third-moments-and-all-serialized-rows}
+
+For a vertex \(v\) of degree \(d\), define
+
+\[
+s_v=\sum_{u\sim v}d_u,\qquad
+q_v=\#\{\text{triangles of }G\text{ containing }v\},\qquad
+h_v=s_v-2q_v.
+\tag{C.13}
+\]
+
+Direct multiplication gives
+
+\[
+(L^3)_{vv}=d^3+2d^2+s_v-2q_v=d^3+2d^2+h_v.
+\tag{C.14}
+\]
+
+If \(R_v=V\setminus(N(v)\cup\{v\})\), then
+
+\[
+h_v=d+e(N(v),R_v),\qquad
+d\le h_v\le d(20-d).
+\tag{C.15}
+\]
+
+For a degree class put
+
+\[
+S_d=\sum_{v:d_v=d}s_v,\qquad
+Q_d=\sum_{v:d_v=d}q_v,\qquad
+H_d=S_d-2Q_d.
+\tag{C.16}
+\]
+
+Also put
+
+\[
+A_d=\sum_{k=1}^{19}k^3Y_{d,k},\qquad
+b_d=d^3+2d^2.
+\tag{C.17}
+\]
+
+Summing (C.14) over the class gives the elimination identity
+
+\[
+A_d=20(m_db_d+H_d),\qquad
+H_d=\frac{A_d}{20}-m_db_d.
+\tag{C.18}
+\]
+
+The serialized Stage-2 model contains \(S_d\), but it does \textbf{not}
+contain \(H_d\) or \(Q_d\) as variables and does not serialize (C.18) as
+an extra row. Those symbols only derive the six necessary inequalities
+below.
+
+The graph-triangle bounds give
+
+\[
+m_dd\le H_d\le m_dd(20-d),\qquad
+H_d\le S_d\le H_d+2m_d\binom d2.
+\tag{C.19}
+\]
+
+For a degree-\(d\) vertex, the number of complement triangles through it
+is
+
+\[
+\overline q_v=\binom{19-d}{2}-95+s_v-q_v.
+\tag{C.20}
+\]
+
+Consequently,
+
+\[
+m_d\left(190-2\binom{19-d}{2}\right)
+\le S_d+H_d\le190m_d.
+\tag{C.21}
+\]
+
+Let
+
+\[
+R_d^*=190-2\binom{19-d}{2}.
+\]
+
+After substituting (C.18), the exact six serialized inequalities are
+
+\[
+\begin{aligned}
+A_d &\ge20m_d(b_d+d),\\
+A_d &\le20m_d\bigl(b_d+d(20-d)\bigr),\\
+A_d-20S_d &\le20m_db_d,\\
+-A_d+20S_d &\le40m_d\binom d2-20m_db_d,\\
+-A_d-20S_d &\le-20m_d(b_d+R_d^*),\\
+A_d+20S_d &\le20m_d(b_d+190).
+\end{aligned}
+\tag{C.22}
+\]
+
+Delete one occurrence of \(d\) from the degree multiset and sort the
+remaining entries as \(r_1\le\cdots\le r_{19}\). A degree-\(d\) neighbor
+set selects \(d\) distinct entries, so
+
+\[
+m_d\sum_{i=1}^{d}r_i
+\le S_d\le
+m_d\sum_{i=20-d}^{19}r_i.
+\tag{C.23}
+\]
+
+Oriented-edge double counting gives
+
+\[
+\sum_{d\in D_s}S_d=2280.
+\tag{C.24}
+\]
+
+Stage 2 consists of Stage 1, real \(S_d\) variables with bounds (C.23),
+the six inequalities (C.22), and equality (C.24). It eliminates
+\(16{,}542\) of the \(16{,}887\) Stage-1 survivors and leaves \(345\).
+
+\subsubsection{C.5 Stage 3: degree-pair and degree-triple class
+model}\label{c.5-stage-3-degree-pair-and-degree-triple-class-model}
+
+Fix one of the \(345\) Stage-2 survivors. For \(a\le b\) in \(D_s\),
+define
+
+\[
+P_{a,b}=
+\begin{cases}
+\binom{m_a}{2},&a=b,\\
+m_am_b,&a<b.
+\end{cases}
+\tag{C.25}
+\]
+
+For a nondecreasing triple \(z=(a,b,c)\), let \(\nu_d(z)\) be the
+multiplicity of \(d\) in \(z\), and define
+
+\[
+P_z=\prod_d\binom{m_d}{\nu_d(z)}.
+\tag{C.26}
+\]
+
+Triples with \(P_z=0\) are omitted. For an actual graph define:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E_{a,b}\): the number of graph edges whose endpoint-degree multiset
+  is \(\{a,b\}\);
+\item
+  \(T_z\): the number of graph triangles whose vertex-degree multiset is
+  \(z\);
+\item
+  \(C_z\): the number of complement triangles whose vertices have
+  original-graph degree multiset \(z\).
+\end{itemize}
+
+Their elementary capacities are
+
+\[
+0\le E_{a,b}\le P_{a,b},\qquad
+0\le T_z,C_z\le P_z.
+\tag{C.27}
+\]
+
+\paragraph{C.5.1 Stub and triangle
+totals}\label{c.5.1-stub-and-triangle-totals}
+
+Counting degree-\(d\) edge ends gives
+
+\[
+2E_{d,d}+\sum_{b\ne d}E_{\min(d,b),\max(d,b)}=m_dd.
+\tag{C.28}
+\]
+
+The graph and complement triangle totals are
+
+\[
+\sum_zT_z=t,\qquad
+\sum_zC_z=475-t.
+\tag{C.29}
+\]
+
+\paragraph{C.5.2 Graph classwise third
+moments}\label{c.5.2-graph-classwise-third-moments}
+
+Define
+
+\[
+S_d^G
+=2dE_{d,d}
++\sum_{b\ne d}bE_{\min(d,b),\max(d,b)},
+\tag{C.30}
+\]
+
+and
+
+\[
+Q_d^G=\sum_z\nu_d(z)T_z.
+\tag{C.31}
+\]
+
+The graph classwise \(L^3\) equation is
+
+\[
+\sum_{k=1}^{19}k^3Y_{d,k}
+=20\left[m_d(d^3+2d^2)+S_d^G-2Q_d^G\right].
+\tag{C.32}
+\]
+
+The verifier serializes (C.32) after substituting (C.30)--(C.31); those
+definitions are not additional rows.
+
+\paragraph{C.5.3 Complement classwise third
+moments}\label{c.5.3-complement-classwise-third-moments}
+
+An original degree-\(d\) vertex has complement degree \(19-d\), and
+
+\[
+\overline Y_{19-d,k}=Y_{d,20-k}.
+\tag{C.33}
+\]
+
+For \(a\le b\), define
+
+\[
+\gamma_d(a,b)=
+\begin{cases}
+2(19-d),&a=b=d,\\
+19-b,&a=d<b,\\
+19-a,&a<d=b,\\
+0,&d\notin\{a,b\}.
+\end{cases}
+\tag{C.34}
+\]
+
+There are \(P_{a,b}-E_{a,b}\) complement edges of original class pair
+\((a,b)\). Hence
+
+\[
+S_d^{\overline G}
+=\sum_{a\le b}\gamma_d(a,b)(P_{a,b}-E_{a,b}),
+\tag{C.35}
+\]
+
+and
+
+\[
+Q_d^{\overline G}=\sum_z\nu_d(z)C_z.
+\tag{C.36}
+\]
+
+Put \(\overline b_d=(19-d)^3+2(19-d)^2\). Applying the local \(L^3\)
+identity to the complement and moving the \(-E_{a,b}\) terms to the left
+gives the exact verifier row
+
+\[
+\sum_{k=1}^{19}k^3Y_{d,20-k}
++20\sum_{a\le b}\gamma_d(a,b)E_{a,b}
++40\sum_z\nu_d(z)C_z
+=20m_d\overline b_d
++20\sum_{a\le b}\gamma_d(a,b)P_{a,b}.
+\tag{C.37}
+\]
+
+The \(E_{a,b}\) coefficient is positive because the complement uses
+\(P_{a,b}-E_{a,b}\).
+
+\paragraph{C.5.4 Pair-incidence and wedge
+inequalities}\label{c.5.4-pair-incidence-and-wedge-inequalities}
+
+For \(a\le b\), define
+
+\[
+\pi_{a,b}(z)=
+\begin{cases}
+\binom{\nu_a(z)}2,&a=b,\\
+\nu_a(z)\nu_b(z),&a<b.
+\end{cases}
+\tag{C.38}
+\]
+
+The graph edge--triangle incidence bound is
+
+\[
+\sum_z\pi_{a,b}(z)T_z
+\le(\min(a,b)-1)E_{a,b}.
+\tag{C.39}
+\]
+
+An original nonedge of class \((a,b)\) is a complement edge with
+endpoint degrees \(19-a,19-b\), so
+
+\[
+\sum_z\pi_{a,b}(z)C_z
+\le(18-\max(a,b))(P_{a,b}-E_{a,b}).
+\tag{C.40}
+\]
+
+The graph and complement wedge bounds are
+
+\[
+\sum_z\nu_d(z)T_z\le m_d\binom d2,\qquad
+\sum_z\nu_d(z)C_z\le m_d\binom{19-d}{2}.
+\tag{C.41}
+\]
+
+Stage 3 comprises spectral rows (C.9)--(C.12), bounds (C.27), equations
+(C.28)--(C.29), the substituted classwise rows (C.32) and (C.37), and
+inequalities (C.39)--(C.41).
+
+\paragraph{C.5.5 Continuous-relaxation and integrality
+semantics}\label{c.5.5-continuous-relaxation-and-integrality-semantics}
+
+For an actual graph, \(Y\) is generally real, whereas \(E,T,C\) are
+integer graph counts. In each of the \(343\) ordinary Stage-3 leaves,
+the verifier allows \(E,T,C\) to be real. Each ordinary certificate
+therefore proves infeasibility of a continuous relaxation containing
+every actual mixed graph point. Integrality metadata is not imposed in
+those root LPs. It is consulted only to validate the final branch
+variable. Root certificates eliminate \(343\) of the \(345\) models and
+leave two roots.
+
+\subsubsection{C.6 Exact Farkas
+convention}\label{c.6-exact-farkas-convention}
+
+Before standardization, write a model as
+
+\[
+A_{\rm eq}x=b_{\rm eq},\qquad
+A_{\rm ub}x\le b_{\rm ub},\qquad
+\ell_j\le x_j\le u_j,
+\tag{C.42}
+\]
+
+where every lower bound is finite. Substitute \(x=\ell+x'\), \(x'\ge0\).
+For each inequality add a nonnegative slack \(s\); for each finite upper
+bound add a nonnegative slack \(r\):
+
+\[
+\begin{aligned}
+A_{\rm eq}x'&=b_{\rm eq}-A_{\rm eq}\ell,\\
+A_{\rm ub}x'+s&=b_{\rm ub}-A_{\rm ub}\ell,\\
+x'_j+r_j&=u_j-\ell_j.
+\end{aligned}
+\tag{C.43}
+\]
+
+This gives an integer standard form
+
+\[
+Bw=h,\qquad w\ge0.
+\tag{C.44}
+\]
+
+A sparse integer row multiplier \(z\) is a contradiction certificate
+when
+
+\[
+B^{\mathsf T}z\ge0,\qquad h^{\mathsf T}z<0.
+\tag{C.45}
+\]
+
+A feasible \(w\) would instead give
+\(h^{\mathsf T}z=w^{\mathsf T}B^{\mathsf T}z\ge0\). Equality-row
+multipliers may have either sign. Every model-inequality and upper-bound
+row has its own \(+1\) slack column, so its multiplier must be
+nonnegative. The checker verifies lower-bound shifts, sparse indices,
+integer coefficients, slack-row signs, every component of
+\(B^{\mathsf T}z\), and the strict inequality \(h^{\mathsf T}z<0\). It
+reconstructs the model from candidate data and trusts neither serialized
+matrices nor floating-point solver verdicts.
+
+\subsubsection{C.7 Deterministic variable, row and certificate
+serialization}\label{c.7-deterministic-variable-row-and-certificate-serialization}
+
+For every candidate, \(D_s\) is increasing. Stage-1 variables are
+\(Y_{d,k}\), first by increasing \(d\), then by \(k=1,\ldots,19\). Stage
+2 uses the same block and appends \(S_d\) in increasing degree order.
+The class model orders variables as:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(Y_{d,k}\), first by increasing \(d\), then \(k\);
+\item
+  \(E_{a,b}\) for lexicographically ordered pairs \(a\le b\);
+\item
+  \(T_z\) for lexicographically ordered nondecreasing triples with
+  \(P_z>0\);
+\item
+  \(C_z\) in the same triple order.
+\end{enumerate}
+
+Standard-form rows are ordered as:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  equality rows in construction order;
+\item
+  model inequalities in construction order;
+\item
+  finite variable upper bounds in variable order.
+\end{enumerate}
+
+For Stage 1 and Stage 2, equality order is the three class moments
+(C.9)--(C.11) for increasing \(d\), the spectral-column equations (C.12)
+for increasing \(k\), and, in Stage 2, (C.24). Stage-2 inequalities are
+the six rows (C.22) for each increasing \(d\). Finite \(S_d\) upper
+bounds from (C.23) appear later with the variable upper-bound rows;
+their lower bounds are handled by the shift in (C.43).
+
+For the class model, equality order is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  spectral class moments for increasing \(d\);
+\item
+  spectral-column equations for increasing \(k\);
+\item
+  stub equations for increasing \(d\);
+\item
+  graph and complement triangle totals;
+\item
+  graph classwise \(L^3\) rows for increasing \(d\);
+\item
+  complement classwise \(L^3\) rows for increasing \(d\).
+\end{enumerate}
+
+Class inequalities are the graph and complement pair-incidence rows for
+each lexicographically ordered pair, followed by graph and complement
+wedge rows for increasing \(d\). Upper-bound rows then follow the
+\(E,T,C\) order.
+
+Each Stage-1, Stage-2, or class certificate shard has schema
+
+\begin{verbatim}
+{
+  "format": "s20-standard-form-farkas-z-v1",
+  "stage": "stage1 | stage2 | class",
+  "records": [
+    ["source_index", [["row_index", "integer_multiplier"]]]
+  ]
+}
+\end{verbatim}
+
+The quoted field values in this display denote types, not literal values
+in an actual shard. Within each certificate, nonzero row indices are
+strictly increasing, unique, and in range. Across consecutively numbered
+shards, source indices are globally increasing and equal the exact
+source-minus-survivor index list. Zero multipliers and noninteger
+coefficients are rejected.
+
+The final branch file is certs/branch\_leaves.json.gz. For each root it
+binds the source sequence and triangle count to a verified variable
+index and name, the integer split floor, and one sparse certificate for
+each child. Its metadata must agree with
+data/final\_integer\_roots.json.
+
+\subsubsection{C.8 Set partition, ledger identities and exact
+coverage}\label{c.8-set-partition-ledger-identities-and-exact-coverage}
+
+At every certified layer,
+
+\[
+S_i=L_i\mathbin{\dot\cup}S_{i+1},\qquad
+L_i=S_i\setminus S_{i+1}.
+\tag{C.46}
+\]
+
+The exact coverage ledger is:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+Layer & Source & Exact Farkas leaves & Survivors \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+complement representatives & \(80{,}122\) & -- & \(80{,}122\) \\
+Stage 1 & \(80{,}122\) & \(63{,}235\) & \(16{,}887\) \\
+Stage 2 & \(16{,}887\) & \(16{,}542\) & \(345\) \\
+Stage 3 & \(345\) & \(343\) & \(2\) roots \\
+integer split & \(2\) roots & \(4\) & \(0\) \\
+\end{longtable}
+}
+
+The five complete uncompressed ledger-byte identities are
+
+\begin{verbatim}
+base candidates (160,244)
+8523a5c0c0bc1c4f2d6e76be0979f984954b393393e483f4047529b0d48245e2
+
+complement representatives / Stage-1 source (80,122)
+851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4
+
+Stage-1 survivors / Stage-2 source (16,887)
+a325883c2b1d7919f70ac82d2460733f1fe9b3e373f633b42a1b6ae512fc3ad4
+
+Stage-2 survivors / class source (345)
+dd39bed2528cea440158a0161451dc29dbbb2b36fde0f91ae6558ee7424d8798
+
+class survivors / final roots (2)
+b3b6352252492f17517e00f25307f8370daec1eb50786d598218c8f540859ecc
+\end{verbatim}
+
+The checker verifies ordered subset membership, uniqueness, exact set
+difference, source order, shard numbering, and shard hashes. It records
+zero uncovered cases, unknown outcomes, timeouts, or crashes.
+
+\subsubsection{\texorpdfstring{C.9 Final \(E_{2,2}\)
+split}{C.9 Final E\_\{2,2\} split}}\label{c.9-final-e_22-split}
+
+The two surviving roots are
+
+\[
+\begin{aligned}
+s^{(0)}={}&(2,2,2,4,6,6,7,7,9,9,9,10,12,12,14,14,15,16,17,17),\\
+t^{(0)}={}&229,
+\end{aligned}
+\tag{C.47}
+\]
+
+and
+
+\[
+\begin{aligned}
+s^{(1)}={}&(2,2,2,5,5,6,6,8,9,9,9,10,12,12,14,14,15,16,17,17),\\
+t^{(1)}={}&231.
+\end{aligned}
+\tag{C.48}
+\]
+
+Each has eleven degree classes and hence \(11\cdot19=209\) spectral
+variables. The checker verifies by name, not merely by position, that
+class-model variable index \(209\) is \(E_{2,2}\). Both sequences have
+three degree-\(2\) vertices, so for an actual graph
+
+\[
+E_{2,2}\in\{0,1,2,3\}.
+\tag{C.49}
+\]
+
+For each root, the adjacent children are
+
+\[
+E_{2,2}\le0\qquad\text{and}\qquad E_{2,2}\ge1.
+\tag{C.50}
+\]
+
+The left child fixes \(E_{2,2}=0\); the right contains \(1,2,3\). The
+children are disjoint and exhaustive for the actual integer count. Each
+of the four child continuous relaxations has an exact Farkas
+certificate. Thus
+
+\[
+63{,}235+16{,}542+343+4=80{,}124
+\tag{C.51}
+\]
+
+exact leaves cover all complement representatives, with each final
+representative replaced by two branch leaves.
+
+\subsubsection{C.10 Universal graph-to-model
+implication}\label{c.10-universal-graph-to-model-implication}
+
+Suppose a target graph existed. Equations (C.1)--(C.5) put its degree
+sequence and triangle count in the complete enumeration. After
+complementing if necessary, it realizes a retained representative. Its
+eigenprojector diagonals give \(Y\) satisfying Stage 1. Its actual
+neighbor-degree sums give \(S\) satisfying Stage 2. Its actual edge,
+graph-triangle, and complement-triangle counts give \(E,T,C\) satisfying
+every Stage-3 equation, capacity, and incidence inequality. If it
+reaches a final root, its integer \(E_{2,2}\) lies in exactly one child
+of (C.50).
+
+The exact certificate at the corresponding leaf contradicts feasibility
+by (C.45), and the verified set partition ensures that no candidate
+avoids a leaf. Therefore no target graph exists.
+
+\subsubsection{C.11 Reproduction identities and provenance
+note}\label{c.11-reproduction-identities-and-provenance-note}
+
+The release launcher pins the following internal helper files:
+
+\begin{verbatim}
+verification/n20/verify_enumeration_v2.py
+4df5db86179076364561689d8a4e62cba67890ded650ecc354f53949492bdbd9
+
+verification/n20/verify_certificates_v2.py
+b12dfe89fa5b8562844da9f963fdc9782336a3ef29219f6d481dea71170d385e
+
+verification/n20/audit_cycle_identity_v2.py
+c59c0255ba40f7b311c614b7493b760460a622ceb09fca08ce1669230248f956
+\end{verbatim}
+
+With those helpers, the telemetry-free canonical JSON has SHA-256
+
+\begin{verbatim}
+ebc3d8065c3f0c2e869e940f2d50c572292c45646a5ee6ac658a3f805b1ccbac
+\end{verbatim}
+
+The combined release retains two fresh full macOS replay transcripts for
+this current helper set:
+
+\begin{verbatim}
+logs/n20-current-run1.log
+9b7ad79994af963e0ba8acfce70d2c3f29c451fb914eae4d57a4d98010989688
+
+logs/n20-current-run2.log
+f85d291f862188b2f9b653f512ea458b971f9a4910f79cddf275a2b8f302b3ec
+\end{verbatim}
+
+Both runs exit 0 and reproduce the canonical bytes under the offline
+sandbox. The expected terminal statuses are:
+
+\begin{verbatim}
+INDEPENDENT_ENUMERATION_V2_PASS
+INDEPENDENTLY_VERIFIED_UNSAT
+INDEPENDENT_REPRODUCTION_PASS
+\end{verbatim}
+
+These are internal cross-check status labels; Section 7.3 states their
+trust boundary. Earlier wrapper identities are recorded in
+\texttt{ARTIFACT\_PROVENANCE.md}.
+
+\subsection{Data and code
+availability}\label{data-and-code-availability}
+
+The archival release contains this manuscript and source, the two frozen
+certificate archives, their detached hashes, the hardened order-20
+wrapper and internal v2 verifiers, the expected canonical order-20 JSON,
+exact reproduction programs, and complete replay logs. The top-level
+manifest records the SHA-256 digest of every deposited file.
+
+\subsection{Author contributions and
+responsibility}\label{author-contributions-and-responsibility}
+
+Jihun Kim conceived the study, performed and verified the computations,
+prepared the deposited materials and wrote the manuscript. He takes
+responsibility for the work.
+
+\subsection{AI assistance disclosure}\label{ai-assistance-disclosure}
+
+OpenAI ChatGPT Pro and Codex assisted with research planning, drafting,
+code development, test design and internal review. The author checked
+the mathematical claims, executed the final verification and approved
+the manuscript and deposited files.
+
+\subsection{Funding}\label{funding}
+
+This research received no external funding.
+
+\subsection{Competing interests}\label{competing-interests}
+
+The author declares no competing interests.
+
+\subsection{References}\label{references}
+
+\begingroup\small
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  S. M. Fallat, S. J. Kirkland, J. J. Molitierno and M. Neumann, ``On
+  graphs whose Laplacian matrices have distinct integer eigenvalues,''
+  \emph{Journal of Graph Theory} \textbf{50} (2005), 162--174.
+  \href{https://doi.org/10.1002/jgt.20102}{DOI}.
+\item
+  K. Ch. Das, S.-G. Lee and G.-S. Cheon, ``On the conjecture for certain
+  Laplacian integral spectrum of graphs,'' \emph{Journal of Graph
+  Theory} \textbf{63} (2010), 106--113.
+  \href{https://doi.org/10.1002/jgt.20412}{DOI}.
+\item
+  A. Goldberger and M. Neumann, ``On a conjecture on a Laplacian matrix
+  with distinct integral spectrum,'' \emph{Journal of Graph Theory}
+  \textbf{72} (2013), 178--208.
+  \href{https://doi.org/10.1002/jgt.21638}{DOI}.
+\item
+  A. Hameed, Z. U. Khan and M. Tyaglov, ``Laplacian energy and first
+  Zagreb index of Laplacian integral graphs,'' \emph{Analele Științifice
+  ale Universității Ovidius Constanța} \textbf{30} (2022), 133--160.
+  \href{https://doi.org/10.2478/auom-2022-0023}{DOI}.
+\item
+  N. Johnston, S. Plosker and L. M. B. Varona, ``Enumeration of
+  Laplacian integral and \(\{-1,0,1\}\)-diagonalizable graphs,''
+  arXiv:2607.06336v1 (2026).
+  \href{https://doi.org/10.48550/arXiv.2607.06336}{DOI}.
+\item
+  N. Biggs, \emph{Algebraic Graph Theory}, 2nd ed., Cambridge University
+  Press,
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \setcounter{enumii}{1992}
+  \tightlist
+  \item
+  \end{enumerate}
+\item
+  P. Erdős and T. Gallai, ``Graphs with prescribed degrees of
+  vertices,'' \emph{Matematikai Lapok} \textbf{11} (1960), 264--274.
+\item
+  S. L. Hakimi, ``On realizability of a set of integers as degrees of
+  the vertices of a linear graph. I,'' \emph{Journal of the Society for
+  Industrial and Applied Mathematics} \textbf{10} (1962), 496--506.
+\item
+  D. J. Kleitman and D. L. Wang, ``Algorithms for constructing graphs
+  and digraphs with given valences and factors,'' \emph{Discrete
+  Mathematics} \textbf{6} (1973), 79--88.
+\item
+  A. Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley,
+  1986.
+\end{enumerate}
+
+\endgroup
+
+\end{document}

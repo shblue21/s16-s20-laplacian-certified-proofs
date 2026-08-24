@@ -1,0 +1,181 @@
+COMBINED_MANIFEST_PASS
+===== ORDER 16 CLEAN REPLAY =====
+{"base_sequences": 2077, "branch_nodes": 66, "class_cert_sha256": "51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd", "class_models": 42, "degree_cert_sha256": "950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9", "degree_certificate_counts": {"stage1_farkas": 1359, "stage2_farkas": 676, "survivor": 42}, "elapsed_seconds": 5.128515, "farkas_leaves": 108, "graphical_sequences": 2233, "max_depth": 10, "moment_sequences": 2249, "status": "VERIFIED_UNSAT", "tree_nodes": 174}
+{"base_sequences": 2077, "graphical_sequences_havel_hakimi": 2233, "moment_sequences_independent": 2249, "mutation_rejected": true, "random_graphs_tested": 200, "status": "SEMANTIC_AUDIT_PASSED", "structured_graphs_tested": 5, "survivors": 42}
+ENVIRONMENT.txt: OK
+README.md: OK
+REGENERATE.sh: OK
+REPORT.md: OK
+REPRODUCE.sh: OK
+certs/class_exhaustion.json.gz: OK
+certs/degree_reduction.json.gz: OK
+code/audit_semantics.py: OK
+code/exact_models.py: OK
+code/farkas_tools.py: OK
+code/generate_certificates.py: OK
+code/verify_certificates.py: OK
+data/survivors42_exact.json: OK
+logs/audit_semantics.log: OK
+logs/reproduce.log: OK
+logs/verify_certificates.log: OK
+logs/verify_certificates_optimized.log: OK
+requirements-generation.txt: OK
+===== ORDER 16 OPTIMIZED VERIFIER =====
+{"base_sequences": 2077, "branch_nodes": 66, "class_cert_sha256": "51cc5417f922f6bfceb3704c81a1691d813f76550517397269404b35225cc9bd", "class_models": 42, "degree_cert_sha256": "950d05274bf8e7234c0c72efa78927feeeacadc33ba5274f42c738ff3e8562c9", "degree_certificate_counts": {"stage1_farkas": 1359, "stage2_farkas": 676, "survivor": 42}, "elapsed_seconds": 5.119557, "farkas_leaves": 108, "graphical_sequences": 2233, "max_depth": 10, "moment_sequences": 2249, "status": "VERIFIED_UNSAT", "tree_nodes": 174}
+N16_CANONICAL_BYTE_MATCH
+===== ORDER 20 HARDENED REPLAY =====
+Offline sandbox: macos-sandbox-exec
+Pinned helper: verify_enumeration_v2.py SHA-256=4df5db86179076364561689d8a4e62cba67890ded650ecc354f53949492bdbd9
+Pinned helper: verify_certificates_v2.py SHA-256=b12dfe89fa5b8562844da9f963fdc9782336a3ef29219f6d481dea71170d385e
+Pinned helper: audit_cycle_identity_v2.py SHA-256=c59c0255ba40f7b311c614b7493b760460a622ceb09fca08ce1669230248f956
+Archive SHA-256: 1eeda59a36dc835ec0efd3dc741d985145054af0d72e77f59e84f9cb63461206
+Sidecar verified: /Users/kimjihun/Personal/math/s16-s20-laplacian-certified-proofs/artifacts/S20_CERTIFIED_EXHAUSTION_RELEASE_20260821.tar.gz.sha256
+
+===== BUNDLED CLEAN REPLAY =====
+===== COMMAND: sha256sum -c MANIFEST.sha256 =====
+ENVIRONMENT.txt: OK
+ORIGINAL_RELEASE_AUDIT.md: OK
+PARAMS.json: OK
+REGENERATE.sh: OK
+REPORT.md: OK
+REPRODUCE.sh: OK
+REPRODUCE_FINAL.sh: OK
+RESULT_SUMMARY.json: OK
+certs/SUMMARY.json: OK
+certs/branch_leaves.json.gz: OK
+certs/class_0000.json.gz: OK
+certs/class_0001.json.gz: OK
+certs/class_0002.json.gz: OK
+certs/class_0003.json.gz: OK
+certs/class_summary.json: OK
+certs/stage1_0000.json.gz: OK
+certs/stage1_0001.json.gz: OK
+certs/stage1_0002.json.gz: OK
+certs/stage1_0003.json.gz: OK
+certs/stage1_0004.json.gz: OK
+certs/stage1_0005.json.gz: OK
+certs/stage1_0006.json.gz: OK
+certs/stage1_0007.json.gz: OK
+certs/stage1_0008.json.gz: OK
+certs/stage1_0009.json.gz: OK
+certs/stage1_0010.json.gz: OK
+certs/stage1_0011.json.gz: OK
+certs/stage1_0012.json.gz: OK
+certs/stage1_0013.json.gz: OK
+certs/stage1_0014.json.gz: OK
+certs/stage1_0015.json.gz: OK
+certs/stage1_0016.json.gz: OK
+certs/stage1_0017.json.gz: OK
+certs/stage1_0018.json.gz: OK
+certs/stage1_0019.json.gz: OK
+certs/stage1_0020.json.gz: OK
+certs/stage1_0021.json.gz: OK
+certs/stage1_0022.json.gz: OK
+certs/stage1_0023.json.gz: OK
+certs/stage1_0024.json.gz: OK
+certs/stage1_0025.json.gz: OK
+certs/stage1_0026.json.gz: OK
+certs/stage1_0027.json.gz: OK
+certs/stage1_0028.json.gz: OK
+certs/stage1_0029.json.gz: OK
+certs/stage1_0030.json.gz: OK
+certs/stage1_0031.json.gz: OK
+certs/stage1_summary.json: OK
+certs/stage2_0000.json.gz: OK
+certs/stage2_0001.json.gz: OK
+certs/stage2_0002.json.gz: OK
+certs/stage2_0003.json.gz: OK
+certs/stage2_0004.json.gz: OK
+certs/stage2_0005.json.gz: OK
+certs/stage2_0006.json.gz: OK
+certs/stage2_0007.json.gz: OK
+certs/stage2_0008.json.gz: OK
+certs/stage2_0009.json.gz: OK
+certs/stage2_0010.json.gz: OK
+certs/stage2_0011.json.gz: OK
+certs/stage2_0012.json.gz: OK
+certs/stage2_0013.json.gz: OK
+certs/stage2_0014.json.gz: OK
+certs/stage2_0015.json.gz: OK
+certs/stage2_0016.json.gz: OK
+certs/stage2_summary.json: OK
+code/audit_graph_identities.py: OK
+code/generate_certificates.py: OK
+code/generator_models.py: OK
+code/independent_enumeration_audit.py: OK
+code/mutation_audit_final.py: OK
+code/verify_certificates.py: OK
+data/base_sequences.txt.gz: OK
+data/class_source.txt.gz: OK
+data/class_survivors.txt.gz: OK
+data/complement_pairs.txt.gz: OK
+data/complement_representatives.txt.gz: OK
+data/coverage.json: OK
+data/final_integer_roots.json: OK
+data/graphical_sequences.txt.gz: OK
+data/moment_sequences.txt.gz: OK
+data/stage1_source.txt.gz: OK
+data/stage1_survivors.txt.gz: OK
+data/stage2_source.txt.gz: OK
+data/stage2_survivors.txt.gz: OK
+logs/SELF_REFERENCE_NOTE.md: OK
+logs/class.out: OK
+logs/generate_all_certs.out: OK
+logs/preseal_clean_replay.exit: OK
+logs/preseal_clean_replay.stdout_stderr.log: OK
+logs/preseal_clean_replay.stdout_stderr.log.sha256: OK
+logs/preseal_command_exit_codes.json: OK
+logs/stage1.out: OK
+logs/stage2.out: OK
+requirements-generation.txt: OK
+===== EXIT CODE: 0 =====
+
+===== COMMAND: bash REPRODUCE.sh =====
+
+===== COMMAND: python3 code/verify_certificates.py =====
+{"base_sequences": 160244, "class_and_branch": {"branch_leaves": 4, "branch_roots": 2, "class": {"leaves": 343, "source": 345, "support_sum": 23425, "survivors": 2}, "roots": [{"branch_variable_index": 209, "branch_variable_name": ["E", 2, 2], "floor": 0, "left_bound": "x[209] <= 0", "right_bound": "x[209] >= 1", "root_index": 0, "sequence": [2, 2, 2, 4, 6, 6, 7, 7, 9, 9, 9, 10, 12, 12, 14, 14, 15, 16, 17, 17], "triangles": 229}, {"branch_variable_index": 209, "branch_variable_name": ["E", 2, 2], "floor": 0, "left_bound": "x[209] <= 0", "right_bound": "x[209] >= 1", "root_index": 1, "sequence": [2, 2, 2, 5, 5, 6, 6, 8, 9, 9, 9, 10, 12, 12, 14, 14, 15, 16, 17, 17], "triangles": 231}]}, "complement_representatives": 80122, "crashes": 0, "elapsed_seconds": 124.353195, "graphical_sequences": 200108, "moment_sequences": 209932, "n": 20, "release_files": {"manifest_entries": 95, "python_files": ["code/audit_graph_identities.py", "code/generate_certificates.py", "code/generator_models.py", "code/independent_enumeration_audit.py", "code/mutation_audit_final.py", "code/verify_certificates.py"]}, "spectrum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "stage1": {"leaves": 63235, "source": 80122, "support_sum": 1401574, "survivors": 16887}, "stage2": {"leaves": 16542, "source": 16887, "support_sum": 707033, "survivors": 345}, "status": "VERIFIED_UNSAT", "timeouts": 0, "total_farkas_leaves": 80124, "traces": {"trace1": 190, "trace2": 2470, "trace3": 36100, "trace4": 562666}, "uncovered": 0, "unknown": 0}
+===== EXIT CODE: 0 =====
+
+===== COMMAND: python3 -O code/verify_certificates.py =====
+{"base_sequences": 160244, "class_and_branch": {"branch_leaves": 4, "branch_roots": 2, "class": {"leaves": 343, "source": 345, "support_sum": 23425, "survivors": 2}, "roots": [{"branch_variable_index": 209, "branch_variable_name": ["E", 2, 2], "floor": 0, "left_bound": "x[209] <= 0", "right_bound": "x[209] >= 1", "root_index": 0, "sequence": [2, 2, 2, 4, 6, 6, 7, 7, 9, 9, 9, 10, 12, 12, 14, 14, 15, 16, 17, 17], "triangles": 229}, {"branch_variable_index": 209, "branch_variable_name": ["E", 2, 2], "floor": 0, "left_bound": "x[209] <= 0", "right_bound": "x[209] >= 1", "root_index": 1, "sequence": [2, 2, 2, 5, 5, 6, 6, 8, 9, 9, 9, 10, 12, 12, 14, 14, 15, 16, 17, 17], "triangles": 231}]}, "complement_representatives": 80122, "crashes": 0, "elapsed_seconds": 125.415134, "graphical_sequences": 200108, "moment_sequences": 209932, "n": 20, "release_files": {"manifest_entries": 95, "python_files": ["code/audit_graph_identities.py", "code/generate_certificates.py", "code/generator_models.py", "code/independent_enumeration_audit.py", "code/mutation_audit_final.py", "code/verify_certificates.py"]}, "spectrum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "stage1": {"leaves": 63235, "source": 80122, "support_sum": 1401574, "survivors": 16887}, "stage2": {"leaves": 16542, "source": 16887, "support_sum": 707033, "survivors": 345}, "status": "VERIFIED_UNSAT", "timeouts": 0, "total_farkas_leaves": 80124, "traces": {"trace1": 190, "trace2": 2470, "trace3": 36100, "trace4": 562666}, "uncovered": 0, "unknown": 0}
+===== EXIT CODE: 0 =====
+
+===== COMMAND: python3 code/independent_enumeration_audit.py =====
+{"base_sequences": 160244, "complement_fixed_points": 0, "complement_representatives": 80122, "dp_cache": {"hits": 5653938, "misses": 305845}, "elapsed_seconds": 6.06437, "graphical_sequences": 200108, "implementation": "position-DP plus Havel-Hakimi", "moment_sequences": 209932, "representative_sha256": "851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4", "status": "INDEPENDENT_ENUMERATION_PASS"}
+===== EXIT CODE: 0 =====
+
+===== COMMAND: python3 code/audit_graph_identities.py =====
+{"elapsed_seconds": 1.453359, "other_random_graphs": 80, "random_95_edge_graphs": 120, "status": "GRAPH_IDENTITY_AUDIT_PASS", "structured_graphs": 6}
+===== EXIT CODE: 0 =====
+
+===== COMMAND: python3 code/mutation_audit_final.py =====
+{"empty_certificate_rejected": true, "missing_leaf_rejected": true, "negated_certificate_rejected": true, "noninteger_branch_rejected": true, "status": "MUTATION_AUDIT_PASS", "unexpected_python_rejected": true}
+===== EXIT CODE: 0 =====
+===== REPRODUCE.sh RESULT: PASS =====
+===== EXIT CODE: 0 =====
+===== REPRODUCE_FINAL.sh RESULT: PASS =====
+
+===== INDEPENDENT ENUMERATION V2 (normal) =====
+{"counts": {"base": 160244, "complement_fixed_points": 0, "complement_representatives": 80122, "graphical": 200108, "moment": 209932}, "derived_parameters": {"degree_max": 17, "degree_min": 2, "degree_square_sum": 2280, "degree_sum": 190, "edge_count": 95, "n": 20, "spanning_tree_count": 6082255020441600, "spectrum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "trace_L4": 562666, "triangle_complement_total": 475, "triangle_max": 348, "triangle_min": 127, "triangle_offset": 29260}, "elapsed_seconds": 13.351515, "enumeration_stats": {"alphabet_split": 10, "high_hash_keys": 9458, "matched_low_tuples": 25370, "retained_high_tuples": 112251}, "implementation": {"enumeration": "degree-alphabet meet-in-the-middle hash join", "graphicality": "smallest-degree Kleitman-Wang layoff", "release_code_imported_or_executed": false}, "release_root": "/private/tmp/s20-independent.5DpAmL/extracted/S20_CERTIFIED_EXHAUSTION_RELEASE_20260821", "status": "INDEPENDENT_ENUMERATION_V2_PASS", "verified_files": {"base_sequences.txt.gz": {"count": 160244, "sha256_compressed": "3c4eb1fa0e1469faf09f4911f1c67a17ad341d6d9e41b786a67d736d4eef240e", "sha256_uncompressed": "8523a5c0c0bc1c4f2d6e76be0979f984954b393393e483f4047529b0d48245e2", "uncompressed_bytes": 8653176}, "class_source.txt.gz": {"count": 345, "sha256_compressed": "87e6d04ab0b20700fc6a94480ea44b9ff27af68458b581e41324a67acf5412ca", "sha256_uncompressed": "dd39bed2528cea440158a0161451dc29dbbb2b36fde0f91ae6558ee7424d8798", "uncompressed_bytes": 18612}, "complement_pairs.txt.gz": {"count": 80122, "sha256_compressed": "5b26bb044baf47b2b475b1294485dff589e85f89b92bbc71f7a61fe3086b3e9d", "sha256_uncompressed": "973b8b16d104743f540a942cefe0ef926476b9099c9e1cb1164522eb154a0b44", "uncompressed_bytes": 8733298}, "complement_representatives.txt.gz": {"count": 80122, "sha256_compressed": "efe410bb5cd1f4060a1f42f011848b1d1cad07a8031f5e6ee740995cb2acd741", "sha256_uncompressed": "851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4", "uncompressed_bytes": 4348324}, "graphical_sequences.txt.gz": {"count": 200108, "sha256_compressed": "dd78faf13140bb5bfdc114b29ae215e0607fc1aa85a6c6b7050b80b47880521c", "sha256_uncompressed": "7b7cc252551d8e0afdf76e9b47df007ac292b192c3474031201f4026936ef731", "uncompressed_bytes": 10005400}, "moment_sequences.txt.gz": {"count": 209932, "sha256_compressed": "8cc8afd50a9ed55842cc2ab411d06a431b8f63bc4f5ec4db7f034f77bd6bb877", "sha256_uncompressed": "c60854d47d7c6492577999103aba99f00e50d076f38c3f4d3ad486e25c557856", "uncompressed_bytes": 10496600}, "stage1_source.txt.gz": {"count": 80122, "sha256_compressed": "efe410bb5cd1f4060a1f42f011848b1d1cad07a8031f5e6ee740995cb2acd741", "sha256_uncompressed": "851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4", "uncompressed_bytes": 4348324}, "stage2_source.txt.gz": {"count": 16887, "sha256_compressed": "5ffae26e000ec9d6b08cd0f43f773f18e6daa837d2532690c6bc1570eb81346c", "sha256_uncompressed": "a325883c2b1d7919f70ac82d2460733f1fe9b3e373f633b42a1b6ae512fc3ad4", "uncompressed_bytes": 910696}}}
+
+===== INDEPENDENT ENUMERATION V2 (-O) =====
+{"counts": {"base": 160244, "complement_fixed_points": 0, "complement_representatives": 80122, "graphical": 200108, "moment": 209932}, "derived_parameters": {"degree_max": 17, "degree_min": 2, "degree_square_sum": 2280, "degree_sum": 190, "edge_count": 95, "n": 20, "spanning_tree_count": 6082255020441600, "spectrum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "trace_L4": 562666, "triangle_complement_total": 475, "triangle_max": 348, "triangle_min": 127, "triangle_offset": 29260}, "elapsed_seconds": 13.362754, "enumeration_stats": {"alphabet_split": 10, "high_hash_keys": 9458, "matched_low_tuples": 25370, "retained_high_tuples": 112251}, "implementation": {"enumeration": "degree-alphabet meet-in-the-middle hash join", "graphicality": "smallest-degree Kleitman-Wang layoff", "release_code_imported_or_executed": false}, "release_root": "/private/tmp/s20-independent.5DpAmL/extracted/S20_CERTIFIED_EXHAUSTION_RELEASE_20260821", "status": "INDEPENDENT_ENUMERATION_V2_PASS", "verified_files": {"base_sequences.txt.gz": {"count": 160244, "sha256_compressed": "3c4eb1fa0e1469faf09f4911f1c67a17ad341d6d9e41b786a67d736d4eef240e", "sha256_uncompressed": "8523a5c0c0bc1c4f2d6e76be0979f984954b393393e483f4047529b0d48245e2", "uncompressed_bytes": 8653176}, "class_source.txt.gz": {"count": 345, "sha256_compressed": "87e6d04ab0b20700fc6a94480ea44b9ff27af68458b581e41324a67acf5412ca", "sha256_uncompressed": "dd39bed2528cea440158a0161451dc29dbbb2b36fde0f91ae6558ee7424d8798", "uncompressed_bytes": 18612}, "complement_pairs.txt.gz": {"count": 80122, "sha256_compressed": "5b26bb044baf47b2b475b1294485dff589e85f89b92bbc71f7a61fe3086b3e9d", "sha256_uncompressed": "973b8b16d104743f540a942cefe0ef926476b9099c9e1cb1164522eb154a0b44", "uncompressed_bytes": 8733298}, "complement_representatives.txt.gz": {"count": 80122, "sha256_compressed": "efe410bb5cd1f4060a1f42f011848b1d1cad07a8031f5e6ee740995cb2acd741", "sha256_uncompressed": "851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4", "uncompressed_bytes": 4348324}, "graphical_sequences.txt.gz": {"count": 200108, "sha256_compressed": "dd78faf13140bb5bfdc114b29ae215e0607fc1aa85a6c6b7050b80b47880521c", "sha256_uncompressed": "7b7cc252551d8e0afdf76e9b47df007ac292b192c3474031201f4026936ef731", "uncompressed_bytes": 10005400}, "moment_sequences.txt.gz": {"count": 209932, "sha256_compressed": "8cc8afd50a9ed55842cc2ab411d06a431b8f63bc4f5ec4db7f034f77bd6bb877", "sha256_uncompressed": "c60854d47d7c6492577999103aba99f00e50d076f38c3f4d3ad486e25c557856", "uncompressed_bytes": 10496600}, "stage1_source.txt.gz": {"count": 80122, "sha256_compressed": "efe410bb5cd1f4060a1f42f011848b1d1cad07a8031f5e6ee740995cb2acd741", "sha256_uncompressed": "851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4", "uncompressed_bytes": 4348324}, "stage2_source.txt.gz": {"count": 16887, "sha256_compressed": "5ffae26e000ec9d6b08cd0f43f773f18e6daa837d2532690c6bc1570eb81346c", "sha256_uncompressed": "a325883c2b1d7919f70ac82d2460733f1fe9b3e373f633b42a1b6ae512fc3ad4", "uncompressed_bytes": 910696}}}
+
+===== INDEPENDENT CERTIFICATE VERIFIER V2 (normal) =====
+{"base_sequences": 160244, "branch_leaves": 4, "branch_roots": 2, "class": {"leaves": 343, "source": 345, "support_max": 246, "support_min": 19, "support_sum": 23425, "survivors": 2}, "complement_representatives": 80122, "derived_bounds": {"degree_max": 17, "degree_min": 2, "triangle_max": 348, "triangle_min": 127}, "elapsed_seconds": 111.266938, "graphical_sequences": 200108, "moment_sequences": 209932, "n": 20, "spectrum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "stage1": {"leaves": 63235, "source": 80122, "support_max": 55, "support_min": 4, "support_sum": 1401574, "survivors": 16887}, "stage2": {"leaves": 16542, "source": 16887, "support_max": 68, "support_min": 14, "support_sum": 707033, "survivors": 345}, "status": "INDEPENDENTLY_VERIFIED_UNSAT", "total_farkas_leaves": 80124, "uncovered": 0}
+
+===== INDEPENDENT CERTIFICATE VERIFIER V2 (-O) =====
+{"base_sequences": 160244, "branch_leaves": 4, "branch_roots": 2, "class": {"leaves": 343, "source": 345, "support_max": 246, "support_min": 19, "support_sum": 23425, "survivors": 2}, "complement_representatives": 80122, "derived_bounds": {"degree_max": 17, "degree_min": 2, "triangle_max": 348, "triangle_min": 127}, "elapsed_seconds": 110.963621, "graphical_sequences": 200108, "moment_sequences": 209932, "n": 20, "spectrum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "stage1": {"leaves": 63235, "source": 80122, "support_max": 55, "support_min": 4, "support_sum": 1401574, "survivors": 16887}, "stage2": {"leaves": 16542, "source": 16887, "support_max": 68, "support_min": 14, "support_sum": 707033, "survivors": 345}, "status": "INDEPENDENTLY_VERIFIED_UNSAT", "total_farkas_leaves": 80124, "uncovered": 0}
+
+===== CORRECTED C20 SEMANTIC REGRESSION =====
+{"edges": 20, "status": "GRAPH_IDENTITY_CYCLE_V2_PASS", "trace_L4": 1400, "triangles": 0, "vertices": 20}
+ebc3d8065c3f0c2e869e940f2d50c572292c45646a5ee6ac658a3f805b1ccbac
+
+===== CANONICAL RESULT =====
+{"archive_sha256":"1eeda59a36dc835ec0efd3dc741d985145054af0d72e77f59e84f9cb63461206","bundled":{"base_sequences":160244,"class_and_branch":{"branch_leaves":4,"branch_roots":2,"class":{"leaves":343,"source":345,"support_sum":23425,"survivors":2},"roots":[{"branch_variable_index":209,"branch_variable_name":["E",2,2],"floor":0,"left_bound":"x[209] <= 0","right_bound":"x[209] >= 1","root_index":0,"sequence":[2,2,2,4,6,6,7,7,9,9,9,10,12,12,14,14,15,16,17,17],"triangles":229},{"branch_variable_index":209,"branch_variable_name":["E",2,2],"floor":0,"left_bound":"x[209] <= 0","right_bound":"x[209] >= 1","root_index":1,"sequence":[2,2,2,5,5,6,6,8,9,9,9,10,12,12,14,14,15,16,17,17],"triangles":231}]},"complement_representatives":80122,"crashes":0,"graphical_sequences":200108,"moment_sequences":209932,"n":20,"release_files":{"manifest_entries":95,"python_files":["code/audit_graph_identities.py","code/generate_certificates.py","code/generator_models.py","code/independent_enumeration_audit.py","code/mutation_audit_final.py","code/verify_certificates.py"]},"spectrum":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],"stage1":{"leaves":63235,"source":80122,"support_sum":1401574,"survivors":16887},"stage2":{"leaves":16542,"source":16887,"support_sum":707033,"survivors":345},"status":"VERIFIED_UNSAT","timeouts":0,"total_farkas_leaves":80124,"traces":{"trace1":190,"trace2":2470,"trace3":36100,"trace4":562666},"uncovered":0,"unknown":0},"certificates_v2":{"base_sequences":160244,"branch_leaves":4,"branch_roots":2,"class":{"leaves":343,"source":345,"support_max":246,"support_min":19,"support_sum":23425,"survivors":2},"complement_representatives":80122,"derived_bounds":{"degree_max":17,"degree_min":2,"triangle_max":348,"triangle_min":127},"graphical_sequences":200108,"moment_sequences":209932,"n":20,"spectrum":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],"stage1":{"leaves":63235,"source":80122,"support_max":55,"support_min":4,"support_sum":1401574,"survivors":16887},"stage2":{"leaves":16542,"source":16887,"support_max":68,"support_min":14,"support_sum":707033,"survivors":345},"status":"INDEPENDENTLY_VERIFIED_UNSAT","total_farkas_leaves":80124,"uncovered":0},"enumeration_v2":{"counts":{"base":160244,"complement_fixed_points":0,"complement_representatives":80122,"graphical":200108,"moment":209932},"derived_parameters":{"degree_max":17,"degree_min":2,"degree_square_sum":2280,"degree_sum":190,"edge_count":95,"n":20,"spanning_tree_count":6082255020441600,"spectrum":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],"trace_L4":562666,"triangle_complement_total":475,"triangle_max":348,"triangle_min":127,"triangle_offset":29260},"enumeration_stats":{"alphabet_split":10,"high_hash_keys":9458,"matched_low_tuples":25370,"retained_high_tuples":112251},"implementation":{"enumeration":"degree-alphabet meet-in-the-middle hash join","graphicality":"smallest-degree Kleitman-Wang layoff","release_code_imported_or_executed":false},"status":"INDEPENDENT_ENUMERATION_V2_PASS","verified_files":{"base_sequences.txt.gz":{"count":160244,"sha256_compressed":"3c4eb1fa0e1469faf09f4911f1c67a17ad341d6d9e41b786a67d736d4eef240e","sha256_uncompressed":"8523a5c0c0bc1c4f2d6e76be0979f984954b393393e483f4047529b0d48245e2","uncompressed_bytes":8653176},"class_source.txt.gz":{"count":345,"sha256_compressed":"87e6d04ab0b20700fc6a94480ea44b9ff27af68458b581e41324a67acf5412ca","sha256_uncompressed":"dd39bed2528cea440158a0161451dc29dbbb2b36fde0f91ae6558ee7424d8798","uncompressed_bytes":18612},"complement_pairs.txt.gz":{"count":80122,"sha256_compressed":"5b26bb044baf47b2b475b1294485dff589e85f89b92bbc71f7a61fe3086b3e9d","sha256_uncompressed":"973b8b16d104743f540a942cefe0ef926476b9099c9e1cb1164522eb154a0b44","uncompressed_bytes":8733298},"complement_representatives.txt.gz":{"count":80122,"sha256_compressed":"efe410bb5cd1f4060a1f42f011848b1d1cad07a8031f5e6ee740995cb2acd741","sha256_uncompressed":"851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4","uncompressed_bytes":4348324},"graphical_sequences.txt.gz":{"count":200108,"sha256_compressed":"dd78faf13140bb5bfdc114b29ae215e0607fc1aa85a6c6b7050b80b47880521c","sha256_uncompressed":"7b7cc252551d8e0afdf76e9b47df007ac292b192c3474031201f4026936ef731","uncompressed_bytes":10005400},"moment_sequences.txt.gz":{"count":209932,"sha256_compressed":"8cc8afd50a9ed55842cc2ab411d06a431b8f63bc4f5ec4db7f034f77bd6bb877","sha256_uncompressed":"c60854d47d7c6492577999103aba99f00e50d076f38c3f4d3ad486e25c557856","uncompressed_bytes":10496600},"stage1_source.txt.gz":{"count":80122,"sha256_compressed":"efe410bb5cd1f4060a1f42f011848b1d1cad07a8031f5e6ee740995cb2acd741","sha256_uncompressed":"851b058e4c5f933e22bbd61051293342e5788fd3a524fa295266dcde4633e0d4","uncompressed_bytes":4348324},"stage2_source.txt.gz":{"count":16887,"sha256_compressed":"5ffae26e000ec9d6b08cd0f43f773f18e6daa837d2532690c6bc1570eb81346c","sha256_uncompressed":"a325883c2b1d7919f70ac82d2460733f1fe9b3e373f633b42a1b6ae512fc3ad4","uncompressed_bytes":910696}}},"helpers":{"audit_cycle_identity_v2.py":"c59c0255ba40f7b311c614b7493b760460a622ceb09fca08ce1669230248f956","verify_certificates_v2.py":"b12dfe89fa5b8562844da9f963fdc9782336a3ef29219f6d481dea71170d385e","verify_enumeration_v2.py":"4df5db86179076364561689d8a4e62cba67890ded650ecc354f53949492bdbd9"},"release":"S20_CERTIFIED_EXHAUSTION_RELEASE_20260821","schema":"s20-canonical-reproduction-v2","semantic_cycle_regression":{"edges":20,"status":"GRAPH_IDENTITY_CYCLE_V2_PASS","trace_L4":1400,"triangles":0,"vertices":20},"status":"INDEPENDENT_REPRODUCTION_PASS"}
+CANONICAL_RESULT_SHA256=ebc3d8065c3f0c2e869e940f2d50c572292c45646a5ee6ac658a3f805b1ccbac
+OFFLINE_SANDBOX=ENFORCED
+INDEPENDENT_REPRODUCTION_PASS archive_sha256=1eeda59a36dc835ec0efd3dc741d985145054af0d72e77f59e84f9cb63461206 release=S20_CERTIFIED_EXHAUSTION_RELEASE_20260821 canonical_sha256=ebc3d8065c3f0c2e869e940f2d50c572292c45646a5ee6ac658a3f805b1ccbac
+Canonical result copied to: /Users/kimjihun/Personal/math/s16-s20-laplacian-certified-proofs/tmp/reproduced-n20-canonical.json
+N20_CANONICAL_BYTE_MATCH
+COMBINED_REPRODUCTION_PASS orders=16,20

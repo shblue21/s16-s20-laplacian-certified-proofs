@@ -1,0 +1,26 @@
+{
+  "title": "Nonexistence of Simple Graphs with Laplacian Spectrum {0,1,...,n-1} for n=16 and 20: Exact Computer-Assisted Proofs",
+  "description": "We present exact computer-assisted nonexistence proofs for the order-16 and order-20 cases of the S_n,n conjecture. No simple graph on 16 vertices has Laplacian spectrum {0,1,...,15}, and no simple graph on 20 vertices has Laplacian spectrum {0,1,...,19}. The proofs combine exact enumeration, spectral and graph-theoretic relaxations, Farkas certificates and exhaustive integer branching where required. The deposit includes both certificate archives, exact verifiers, coverage records and replay logs. These finite-order results do not settle the conjecture in general. This is a non-peer-reviewed preprint.",
+  "creators": [
+    {
+      "name": "Kim, Jihun",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "publication_date": "2026-08-24",
+  "version": "0.1.0",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "keywords": [
+    "spectral graph theory",
+    "Laplacian spectrum",
+    "computer-assisted proof",
+    "exact computation",
+    "Farkas certificate",
+    "graph nonexistence"
+  ],
+  "notes": "The Zenodo record-level CC BY 4.0 selection applies to the manuscript and documentation. Verification software is MIT licensed, while certificate and machine-result data are dedicated under CC0 1.0; the authoritative file-by-file scope is LICENSES.md. Machine labels containing the word independent denote separately implemented internal checks."
+}

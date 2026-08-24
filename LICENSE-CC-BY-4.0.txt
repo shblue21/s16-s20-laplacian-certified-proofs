@@ -1,0 +1,12 @@
+Creative Commons Attribution 4.0 International
+
+The material identified as CC BY 4.0 in LICENSES.md is licensed under the
+Creative Commons Attribution 4.0 International License.
+
+You are free to share and adapt the material for any purpose, including
+commercially, provided that appropriate credit is given, a link to the license
+is supplied, and changes are indicated. No additional restrictions may be
+applied.
+
+The complete legal code, which controls this license, is available at:
+https://creativecommons.org/licenses/by/4.0/legalcode
