@@ -4,7 +4,8 @@ The archival release contains this manuscript and source, the two frozen
 certificate archives, their detached hashes, the hardened order-20 wrapper and
 internal v2 verifiers, the expected canonical order-20 JSON, exact
 reproduction programs, and complete replay logs. The top-level manifest records
-the SHA-256 digest of every deposited file.
+the SHA-256 digest of every deposited file. The accompanying code repository
+is available on [GitHub](https://github.com/shblue21/s16-s20-laplacian-certified-proofs).
 
 ## Author contributions and responsibility
 

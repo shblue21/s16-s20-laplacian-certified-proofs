@@ -10,6 +10,7 @@ and its executable proof artifacts.
 - Version: 0.1.0
 - Record-level license: Creative Commons Attribution 4.0 International
 - Metadata source: `.zenodo.json`
+- Related repository: `https://github.com/shblue21/s16-s20-laplacian-certified-proofs`
 
 The record-level CC BY 4.0 selection describes the manuscript, PDF and
 documentation. It does not override the file-specific licenses inside the

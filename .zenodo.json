@@ -22,5 +22,12 @@
     "Farkas certificate",
     "graph nonexistence"
   ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/shblue21/s16-s20-laplacian-certified-proofs",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ],
   "notes": "The Zenodo record-level CC BY 4.0 selection applies to the manuscript and documentation. Verification software is MIT licensed, while certificate and machine-result data are dedicated under CC0 1.0; the authoritative file-by-file scope is LICENSES.md. Machine labels containing the word independent denote separately implemented internal checks."
 }

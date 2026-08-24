@@ -5,6 +5,8 @@ order-20 cases, together with their separate certificate archives, hashes and
 reproduction paths. The two finite-order results do not settle the conjecture
 in general and have not undergone external peer review.
 
+Repository: https://github.com/shblue21/s16-s20-laplacian-certified-proofs
+
 ## Reproduce both results
 
 Run from the repository root:

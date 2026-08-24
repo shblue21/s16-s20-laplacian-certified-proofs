@@ -6,6 +6,7 @@ authors:
   - family-names: "Kim"
     given-names: "Jihun"
     affiliation: "Independent Researcher"
+repository-code: "https://github.com/shblue21/s16-s20-laplacian-certified-proofs"
 version: "0.1.0"
 date-released: 2026-08-24
 abstract: >-
