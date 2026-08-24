@@ -6,6 +6,8 @@ internal v2 verifiers, the expected canonical order-20 JSON, exact
 reproduction programs, and complete replay logs. The top-level manifest records
 the SHA-256 digest of every deposited file. The accompanying code repository
 is available on [GitHub](https://github.com/shblue21/s16-s20-laplacian-certified-proofs).
+The archival release is identified by
+[DOI 10.5281/zenodo.22082609](https://doi.org/10.5281/zenodo.22082609).
 
 ## Author contributions and responsibility
 

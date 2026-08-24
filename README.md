@@ -7,6 +7,8 @@ in general and have not undergone external peer review.
 
 Repository: https://github.com/shblue21/s16-s20-laplacian-certified-proofs
 
+DOI: https://doi.org/10.5281/zenodo.22082609
+
 ## Reproduce both results
 
 Run from the repository root:

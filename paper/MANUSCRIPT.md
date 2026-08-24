@@ -1,7 +1,7 @@
 ---
 title: 'Nonexistence of Simple Graphs with Laplacian Spectrum \(\{0,1,\ldots,n-1\}\) for \(n=16\) and \(20\): Exact Computer-Assisted Proofs'
 title-meta: "Nonexistence of Simple Graphs with Laplacian Spectrum {0,1,...,n-1} for n=16 and 20: Exact Computer-Assisted Proofs"
-subtitle: "Preprint, version 0.1.0"
+subtitle: "Preprint, version 0.1.0 · DOI: 10.5281/zenodo.22082609"
 author: "Jihun Kim (Independent Researcher)"
 date: "24 August 2026"
 lang: en

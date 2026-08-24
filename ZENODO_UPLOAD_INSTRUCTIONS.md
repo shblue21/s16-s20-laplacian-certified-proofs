@@ -11,6 +11,7 @@ and its executable proof artifacts.
 - Record-level license: Creative Commons Attribution 4.0 International
 - Metadata source: `.zenodo.json`
 - Related repository: `https://github.com/shblue21/s16-s20-laplacian-certified-proofs`
+- Reserved DOI: `10.5281/zenodo.22082609`
 
 The record-level CC BY 4.0 selection describes the manuscript, PDF and
 documentation. It does not override the file-specific licenses inside the
@@ -52,6 +53,6 @@ directories.
 4. Confirm that the UI still says Preprint, Open and CC BY 4.0, and that the
    mixed-license statement above is visible before pressing Publish.
 
-The DOI is intentionally absent from the current PDF. If a DOI is reserved and
-inserted into the PDF before publication, regenerate the LaTeX, PDF, manifest,
-upload tar and checksum file, then repeat all checks above.
+The reserved DOI is included in the manuscript and release metadata. Publish
+only this DOI's Zenodo draft, after regenerating the LaTeX, PDF, manifest,
+upload tar and checksum file and repeating all checks above.

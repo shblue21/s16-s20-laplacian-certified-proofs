@@ -9,9 +9,10 @@ Last updated: 24 August 2026.
 - Version: `0.1.0`.
 - Author: Jihun Kim, Independent Researcher.
 - Publication type: open, AI-assisted, non-peer-reviewed preprint.
-- DOI: pending; none is asserted in the current metadata.
+- DOI: `10.5281/zenodo.22082609` (reserved for this release; registered on
+  Zenodo publication).
 - Repository URL: `https://github.com/shblue21/s16-s20-laplacian-certified-proofs`.
-  The repository remains private until coordinated release.
+  The repository is released together with the archival record.
 - ORCID: not supplied and therefore omitted.
 
 ## Mathematical artifact status
